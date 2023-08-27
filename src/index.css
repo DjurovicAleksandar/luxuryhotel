@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Victor+Mono:wght@100;300;400;500;600;700&display=swap");
+@font-face {
+  font-family: "Tobias";
+  src: url("./fonts/tobias-regular.ttf") format("truetype");
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  * {
+    padding: 0;
+    margin: 0;
+
+    outline: none;
+    text-decoration: none;
+    list-style-type: none;
+
+    box-sizing: border-box;
+  }
+
+  ::-webkit-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    display: none;
+  }
+
+  body {
+    font-family: "Montserrat", sans-serif;
+    background-color: #f7f4ef;
+  }
+
+  html,
+  body,
+  main {
+    width: 100%;
+    height: 100%;
+  }
+  .titlesub {
+    font-family: "Victor Mono", monospace;
+  }
+  h1,
+  .prism {
+    font-family: "Tobias", sans-serif;
+  }
+
+  .homebackground {
+    background-image: url("/src/assets/img/bg.jpg");
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-position: center;
+  }
+  .inquire {
+    background-image: url("/src/assets/img/bgfooter.jpg");
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-position: center;
+  }
+
+  .content {
+    flex: 0 0 100vw;
+    display: inline-block;
+  }
+
+  .content2 {
+    flex: 0 0 100vh;
+  }
+
+  .sticky__parent {
+    height: 500vh;
+  }
+
+  .sticky {
+    position: sticky;
+    overflow: hidden;
+    top: 0;
+    height: 100vh;
+  }
+
+  .scroll__section {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 500vw;
+    will-change: transform;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .scroll__section section {
+    width: 100vw;
+  }
+}
