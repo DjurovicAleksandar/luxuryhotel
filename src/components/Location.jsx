@@ -12,13 +12,15 @@ function Location() {
   const controls = useAnimation();
 
   useEffect(() => {
-    if (isInView) setTimeout(() => controls.start("visible"), 500);
-    else controls.start("hidden");
+    if (isInView) {
+      controls.start("visible");
+      window.location.hash = "location";
+    } else controls.start("hidden");
   }, [isInView, controls]);
 
   // useEffect({});
   return (
-    <section className="lg:content lg:flex">
+    <section id="location" className="relative lg:content lg:flex">
       <div className="py-6 lg:pl-[100px] border-black/40 border-[1px] border-x-0 border-t-0 lg:border-b-0 mb-4 relative">
         <Marquee
           speed={90}
@@ -50,7 +52,7 @@ function Location() {
             RIGHT IN THE MIDDLE OF IT ALL.
           </p>
         </div>
-        <div className="hidden text-[16px] absolute bottom-10 lg:flex items-center justify-center gap-4">
+        <div className="hidden text-[16px] absolute bottom-20 lg:flex items-center justify-center gap-4">
           <p className="text-[#c88e57] uppercase">See location</p>
           <a className="flex w-[2.5rem] h-[2.5rem] rounded-full bg-[#c88e57] text-white  items-center justify-center ">
             &#8594;

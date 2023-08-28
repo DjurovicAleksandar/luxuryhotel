@@ -22,12 +22,17 @@ function Apartments() {
     { category: "Nr. of apartments", value: "15" },
   ];
   useEffect(() => {
-    if (isInView) setTimeout(() => controls.start("visible"), 500);
-    else controls.start("hidden");
+    if (isInView) {
+      controls.start("visible");
+      window.location.hash = "apartments";
+    } else controls.start("hidden");
   }, [isInView, isInView2, controls]);
 
   return (
-    <section className="p-4  lg:basis-[160vw] lg:flex  items-center gap-5">
+    <section
+      id="apartments"
+      className="relative p-4 lg:w-[160vw] lg:flex  items-center gap-5"
+    >
       <div className="lg:h-[38rem] flex flex-col justify-between">
         <div className="border-[#4f414170]  border-solid border-[1px] border-x-0 border-b-0 lg:border-t-0 py-2 text-[0.8124rem] mb-10 lg:mb-0">
           <ul className="lg:w-[20rem]">

@@ -11,7 +11,7 @@ function AnimatedText(props) {
   };
 
   return (
-    <motion.div className={`text-[2.2em]  uppercase ${classes}`}>
+    <motion.div className={`text-[2.2em] uppercase ${classes}`}>
       {text.split("").map((lettter, i) => {
         return (
           <motion.span

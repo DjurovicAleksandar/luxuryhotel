@@ -17,16 +17,21 @@ function Island() {
   const { scrollY, scrollYProgress } = useScroll();
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    console.log("Page scroll: ", latest);
+    // console.log("Page scroll: ", latest);
   });
 
   useEffect(() => {
-    if (isInView) setTimeout(() => controls.start("visible"), 500);
-    else controls.start("hidden");
+    if (isInView) {
+      controls.start("visible");
+      window.location.hash = "the-island";
+    } else controls.start("hidden");
   }, [isInView, controls]);
 
   return (
-    <section className="relative lg:basis-[100vw]  bg-[#c88e57] text-white p-4 pt-12 text-center lg:flex flex-col items-center justify-center lg:content">
+    <section
+      id="island"
+      className="relative lg:h-full  lg:content bg-[#c88e57] text-white p-4 pt-12 text-center lg:flex flex-col items-center justify-center"
+    >
       <h3 className="uppercase  font-light  lg:translate-y-14">the island</h3>
       <div
         ref={ref}
@@ -41,13 +46,12 @@ function Island() {
       </div>
       <motion.video
         src={island}
-        className={`w-full h-auto lg:w-[500px]`}
+        className={`w-full h-auto lg:w-[600px]`}
         muted
         autoPlay
         loop
-        style={{ scale: 1 }}
+        style={{ scale: scrollYProgress }}
       />
-
       <div ref={ref} className="-translate-y-10 lg:-translate-y-14">
         <AnimatedText
           text="Living on Bali"
@@ -55,7 +59,6 @@ function Island() {
           controls={controls}
         />
       </div>
-
       <p className="leading-4 text-[.75em] text-light mb-20 lg:w-[700px]">
         LIVING ON ONE24 OFFERS A CHANCE TO EXPERIENCE THE ISLAND&apos;S LUSH
         GREEN LANDSCAPES, PICTURESQUE BEACHES, AND WARM CLIMATE ALL YEAR ROUND.
