@@ -1,106 +1,72 @@
 import { useTransform, motion } from "framer-motion";
-import { useEffect } from "react";
+import NavButton from "./helper/NavButton";
+const NavButtons = [
+  { name: "home", value: 0 },
+  { name: "vision", value: 1 },
+  { name: "apartments", value: 2 },
+  { name: "the-island", value: 3 },
+  { name: "location", value: 4 },
+  { name: "availability", value: 5 },
+];
 
-function Nav({ scrollYProgress }) {
-  const scrollToSection = (value = 0, section = "home") => {
-    window.scrollTo(0, value);
+const colors = [
+  "rgb(255,255,255)", // home
+  "rgb(0,0,0)", // vision and aparments
+  "rgb(255,255,255)", // island
+  "rgb(0,0,0)", //location and availability
+];
 
-    setTimeout(() => {
-      window.location.hash = section;
-    }, 100);
-  };
+function Nav({ scrollYProgress, isActive, onIsActive }) {
+  function scrollToPosition(percentage) {
+    const scrollX = window.innerWidth * percentage;
+    const scrollY =
+      (window.innerHeight - window.innerHeight * 0.25) * percentage;
+    window.scrollTo({ left: scrollX, behavior: "smooth" });
+    window.scrollTo(0, scrollY);
+  }
 
-  const color = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.65, 0.99, 1],
-    [
-      "rgb(255,255,255)", // home
-      "rgb(0,0,0)", // vision and aparments
-      "rgb(255,255,255)", // island
-      "rgb(0,0,0)", //location and availability
-      "rgb(255,255,255)", //inquire
-    ]
-  );
+  const color = useTransform(scrollYProgress, [0, 0.2, 0.65, 1], colors);
 
   return (
     <motion.nav
       id="nav"
-      className="absolute lg:fixed top-0 left-0 right-0 w-full h-22 z-[200] flex items-center justify-end lg:justify-between p-5 uppercase"
-      style={{
-        color: color,
-      }}
+      className="absolute lg:fixed top-0 left-0 right-0 w-full h-22 z-[200] flex items-center justify-end lg:justify-between p-5"
+      style={{ color: color }}
     >
       {window.innerWidth >= 1024 && (
         <>
           <div>&nbsp;</div>
-          <div className="">
-            <a
-              onClick={scrollToSection}
-              className="text-xs mr-10 cursor-pointer"
-            >
-              Home
-            </a>
-            <a
-              onClick={() =>
-                scrollToSection(window.innerHeight - 150, "vision")
-              }
-              className="text-xs mr-10 cursor-pointer"
-            >
-              Vision
-            </a>
-            <a
-              onClick={() =>
-                scrollToSection(window.innerHeight + 97, "apartments")
-              }
-              className="text-xs mr-10 cursor-pointer"
-            >
-              Apartments
-            </a>
-            <a
-              onClick={() =>
-                scrollToSection(window.innerHeight * 2.4, "the-island")
-              }
-              className="text-xs mr-10 cursor-pointer"
-            >
-              The Island
-            </a>
-            <a
-              onClick={() =>
-                scrollToSection(window.innerHeight * 3.2, "location")
-              }
-              className="text-xs mr-10 cursor-pointer"
-            >
-              Location
-            </a>
-            <a
-              onClick={() =>
-                scrollToSection(window.innerHeight * 4, "availability")
-              }
-              className="text-xs mr-10 cursor-pointer"
-            >
-              Availability
-            </a>
+          <div>
+            {NavButtons.map(({ name, value }) => {
+              return (
+                <NavButton
+                  key={name}
+                  value={value}
+                  scrollToSection={scrollToPosition}
+                  onIsActive={onIsActive}
+                  isActive={isActive}
+                  color={color}
+                  name={name}
+                />
+              );
+            })}
           </div>
         </>
       )}
-
       <div className="w-fit">
-        <a href="#" className="text-xs mr-10 cursor-pointer">
+        <button href="#" className="text-xs mr-10 cursor-pointer uppercase">
           En
-        </a>
-        <a
-          onClick={() => {
-            // scrollToSection(window.innerHeight * 5.1)
-            const height = document.body.scrollHeight;
-            window.scroll(0, height);
-          }}
-          className="text-xs cursor-pointer"
-        >
-          Inquire
-        </a>
+        </button>
+        <NavButton
+          name="inquire"
+          color={color}
+          value={document.body.scrollHeight}
+          isActive={isActive}
+          scrollToSection={scrollToPosition}
+          onIsActive={onIsActive}
+        />
       </div>
     </motion.nav>
   );
 }
-
 export default Nav;

@@ -9,13 +9,11 @@ import {
   useDragControls,
 } from "framer-motion";
 
-function Home() {
+function Home({ onIsActive }) {
   const ref = useRef(null);
   const isInView = useInView(ref);
   const controls = useAnimation();
   const buttonControls = useAnimation();
-  const x = useMotionValue(0);
-  const dragControls = useDragControls();
 
   const variantsX = {
     visible: {
@@ -34,15 +32,21 @@ function Home() {
   useEffect(() => {
     if (isInView) {
       controls.start("visible");
-      window.location.hash = "home";
-    } else controls.start("hidden");
+      onIsActive("home");
+    } else {
+      controls.start("hidden");
+    }
   }, [isInView, controls]);
 
   return (
-    <div id="home" className="relative lg:content homebackground text-white">
+    <section
+      ref={ref}
+      id="home"
+      className="relative lg:content homebackground text-white"
+    >
       <Badge />
       <div className="w-full h-full flex flex-col absolute top-0 items-center justify-around pt-[6rem] text-center bg-black/30">
-        <div ref={ref}>
+        <div>
           <AnimatedText
             text="Comfort and elegance at california hotel"
             classes="text-[12vw] font-thin mb-5 prism lg:text-[6.280rem] lg:w-[1000px] lg:leading-[100px]"
@@ -86,7 +90,7 @@ function Home() {
           </motion.button>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

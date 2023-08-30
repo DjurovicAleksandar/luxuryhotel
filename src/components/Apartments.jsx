@@ -6,11 +6,11 @@ import { useInView, useAnimation, motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import AnimatedText from "./helper/AnimatedText";
 
-function Apartments() {
+function Apartments({ onIsActive }) {
   const ref = useRef(null);
-  const ref2 = useRef(null);
+
   const isInView = useInView(ref);
-  const isInView2 = useInView(ref2);
+
   const aparments = [bedroom, kitchen, bathroom, pool];
 
   const controls = useAnimation();
@@ -21,15 +21,19 @@ function Apartments() {
     { category: "Relase date", value: "2023" },
     { category: "Nr. of apartments", value: "15" },
   ];
+
   useEffect(() => {
     if (isInView) {
       controls.start("visible");
-      window.location.hash = "apartments";
-    } else controls.start("hidden");
-  }, [isInView, isInView2, controls]);
 
+      onIsActive("apartments");
+    } else {
+      controls.start("hidden");
+    }
+  }, [isInView, controls, onIsActive]);
   return (
     <section
+      ref={ref}
       id="apartments"
       className="relative p-4 lg:w-[160vw] lg:flex  items-center gap-5"
     >
@@ -53,7 +57,7 @@ function Apartments() {
           <h2 className="text-[.8125em] uppercase text-gray-500 my-4">
             Aparments
           </h2>
-          <div ref={ref}>
+          <div>
             <AnimatedText
               text="An osasis of nature"
               classes="text-[2.5em] prism lg:w-[20rem]"

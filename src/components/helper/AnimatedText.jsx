@@ -11,7 +11,10 @@ function AnimatedText(props) {
   };
 
   return (
-    <motion.div className={`text-[2.2em] uppercase ${classes}`}>
+    <motion.div
+      transition={{ delay: 0.3 }}
+      className={`text-[2.2em] uppercase ${classes}`}
+    >
       {text.split("").map((lettter, i) => {
         return (
           <motion.span
@@ -19,7 +22,7 @@ function AnimatedText(props) {
             animate={controls}
             variants={variantsX}
             transition={{
-              delay: Math.random(),
+              delay: Math.random() * 0.5,
             }}
             key={i}
           >

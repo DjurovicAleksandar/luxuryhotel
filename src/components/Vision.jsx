@@ -1,50 +1,32 @@
 import { useEffect, useRef } from "react";
 import visionPic from "../assets/img/visionPic.jpg";
-import { useAnimation, useInView, motion } from "framer-motion";
+import { useAnimation, useInView, motion, isDragActive } from "framer-motion";
 import AnimatedText from "./helper/AnimatedText";
 
-function Vision() {
+function Vision({ onIsActive }) {
   const ref = useRef(null);
-  // const ref2 = useRef(null);
   const isInView = useInView(ref);
-  // const isInView2 = useInView(ref2);
   const controls = useAnimation();
-
-  const informations = [
-    {
-      category: "location",
-      value: "Sipan",
-    },
-    {
-      category: "typologies",
-      value: "t1;t2;t3 duplex",
-    },
-    {
-      category: "release date",
-      value: "2023",
-    },
-    {
-      category: "nr. of apartments",
-      value: "15",
-    },
-  ];
 
   useEffect(() => {
     if (isInView) {
       controls.start("visible");
-      window.location.hash = "vision";
-    } else controls.start("hidden");
-  }, [isInView, controls]);
+      onIsActive("home");
+    } else {
+      controls.start("hidden");
+    }
+  }, [isInView, controls, onIsActive]);
 
   return (
     <section
+      ref={ref}
       id="vision"
-      className="relative p-4 lg:w-[40vw]  lg:pt-24 lg:flex flex-col  border-black/20 border-[1px] border-y-0 border--0 "
+      className="relative p-4 lg:w-[40vw]  lg:pt-24 lg:flex flex-col"
     >
       <h3 className="uppercase text-[0.8124rem] my-5 text-[#6f6f6f] ">
         elevate your lifestyle
       </h3>
-      <div ref={ref}>
+      <div>
         <AnimatedText
           text="our vision for luxury living on one24 is to create a one-of-a-kind
           development that combines contemporary design with the natural beauty of the island"

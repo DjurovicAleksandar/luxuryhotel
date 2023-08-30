@@ -10,7 +10,7 @@ import {
 } from "framer-motion";
 import AnimatedText from "./helper/AnimatedText";
 
-function Island() {
+function Island({ onIsActive }) {
   const ref = useRef(null);
   const isInView = useInView(ref);
   const controls = useAnimation();
@@ -23,18 +23,20 @@ function Island() {
   useEffect(() => {
     if (isInView) {
       controls.start("visible");
-      window.location.hash = "the-island";
-    } else controls.start("hidden");
+      onIsActive("the-island");
+    } else {
+      controls.start("hidden");
+    }
   }, [isInView, controls]);
 
   return (
     <section
-      id="island"
+      ref={ref}
+      id="the-island"
       className="relative lg:h-full  lg:content bg-[#c88e57] text-white p-4 pt-12 text-center lg:flex flex-col items-center justify-center"
     >
       <h3 className="uppercase  font-light  lg:translate-y-14">the island</h3>
       <div
-        ref={ref}
         className="translate-y-4 lg:translate-y-14
       "
       >

@@ -4,23 +4,22 @@ import { useEffect, useRef, useState } from "react";
 import { useAnimation, useInView } from "framer-motion";
 import AnimatedText from "./helper/AnimatedText";
 
-function Location() {
-  const [direction, setDirection] = useState("down");
-
+function Location({ onIsActive }) {
   const ref = useRef(null);
   const isInView = useInView(ref);
   const controls = useAnimation();
 
   useEffect(() => {
     if (isInView) {
+      console.log("second");
       controls.start("visible");
-      window.location.hash = "location";
-    } else controls.start("hidden");
+      onIsActive("location");
+    } else {
+      controls.start("hidden");
+    }
   }, [isInView, controls]);
-
-  // useEffect({});
   return (
-    <section id="location" className="relative lg:content lg:flex">
+    <section ref={ref} id="location" className="relative lg:content lg:flex">
       <div className="py-6 lg:pl-[100px] border-black/40 border-[1px] border-x-0 border-t-0 lg:border-b-0 mb-4 relative">
         <Marquee
           speed={90}
@@ -38,7 +37,7 @@ function Location() {
           <h2 className="uppercase my-4 text-[.825em] text-gray-400">
             location
           </h2>
-          <div ref={ref}>
+          <div>
             <AnimatedText
               text="escape to nature's paradise"
               classes="text-[2.5em] prism leading-8 lg:w-[300px] lg:leading-10"

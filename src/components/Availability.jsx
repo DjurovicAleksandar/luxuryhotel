@@ -1,11 +1,10 @@
 import { useAnimation, useInView, useScroll } from "framer-motion";
 import { useEffect, useRef } from "react";
 import AnimatedText from "./helper/AnimatedText";
-import Inquire from "./Inquire";
 
-function Availability() {
+function Availability({ onIsActive }) {
   const ref = useRef(null);
-  const ref2 = useRef(null);
+
   const isInView = useInView(ref);
   const controls = useAnimation();
 
@@ -21,20 +20,22 @@ function Availability() {
   useEffect(() => {
     if (isInView) {
       controls.start("visible");
-      window.location.hash = "availability";
-    } else controls.start("hidden");
+      onIsActive("availability");
+    } else {
+      controls.start("hidden");
+    }
   }, [isInView, controls]);
 
   return (
     <section
       id="availability"
-      ref={ref2}
+      ref={ref}
       className="relative lg:content pl-8 pt-28"
     >
       <h2 className="text-[.8125em] uppercase text-gray-500 mb-4">
         Availability
       </h2>
-      <div ref={ref}>
+      <div>
         <AnimatedText
           text="discover our available apartments"
           classes="text-[2.5em] font-thin mb-5 prism lg:text-[4rem]"
