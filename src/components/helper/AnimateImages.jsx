@@ -68,7 +68,7 @@ function AnimateImages({ children }) {
       </motion.div>
       {showText && (
         <div
-          className="absolute text-white font-semibold pointer-events-none"
+          className="absolute text-white font-thin pointer-events-none"
           style={{ top: cursorPosition.y - 70, left: 10 }}
         >
           {imgName}

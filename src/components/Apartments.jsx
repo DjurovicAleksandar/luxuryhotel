@@ -82,10 +82,10 @@ function Apartments({ onIsActive, scrollY }) {
 
       {window.innerWidth >= 1024 ? (
         <div className="flex items-center">
-          <AnimateImages name="Pool">
+          <AnimateImages>
             <img
               className="w-full lg:w-[50rem] h-auto lg:h-[38rem] "
-              alt="pool"
+              alt="POOL"
               src={pool}
             />
           </AnimateImages>
@@ -95,21 +95,21 @@ function Apartments({ onIsActive, scrollY }) {
               {" "}
               <img
                 className="w-full lg:w-[35rem] h-auto lg:h-[18.5rem] mb-4"
-                alt="kitchen"
+                alt="KITCHEN"
                 src={kitchen}
               />
               <img
                 className="w-full lg:w-[35rem] h-auto lg:h-[18.5rem] z-50"
-                alt="bathroom"
+                alt="BATHROOM"
                 src={bathroom}
               />
             </AnimateImages>
           </div>
 
-          <AnimateImages name="Bedroom">
+          <AnimateImages>
             <img
               className="w-full lg:w-[50rem] h-auto lg:h-[38rem]"
-              alt="bedroom"
+              alt="BEDROOM"
               src={bedroom}
             />
           </AnimateImages>

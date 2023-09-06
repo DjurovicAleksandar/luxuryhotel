@@ -14,6 +14,7 @@ function Location({ onIsActive }) {
   useEffect(() => {
     if (isInView) {
       controls.start("visible");
+
       if (window.innerWidth >= 1024) onIsActive("location");
     } else {
       controls.start("hidden");
@@ -21,7 +22,11 @@ function Location({ onIsActive }) {
   }, [isInView, controls]);
 
   return (
-    <section ref={ref} id="location" className="relative lg:w-[100vw] lg:flex">
+    <section
+      ref={ref}
+      id="location"
+      className="relative lg:w-[100vw] lg:flex bg-[#f7f4ef]"
+    >
       <div className="py-6 lg:pl-[100px] border-black/40 border-[1px] border-x-0 border-t-0 lg:border-b-0 mb-4 relative">
         <Marquee
           speed={90}

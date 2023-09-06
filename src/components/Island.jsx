@@ -14,14 +14,23 @@ function Island({ onIsActive }) {
   const ref = useRef(null);
   const isInView = useInView(ref);
   const controls = useAnimation();
-  const { scrollYProgress } = useScroll();
+  const { scrollYProgress } = useScroll(ref);
+
+  const videoScale =
+    window.innerWidth >= 1024 &&
+    useTransform(scrollYProgress, [0.42, 0.6], [1, 7]);
+  const textY =
+    window.innerWidth >= 1024 &&
+    useTransform(scrollYProgress, [0.4, 0.6], [0, 200]);
+
+  const opacityY =
+    window.innerWidth >= 1024 &&
+    useTransform(scrollYProgress, [0.3, 0.5], [1, 0]);
 
   useEffect(() => {
     if (isInView) {
       controls.start("visible");
       if (window.innerWidth >= 1024) onIsActive("the-island");
-    } else {
-      controls.start("hidden");
     }
   }, [isInView, controls]);
 
@@ -37,37 +46,43 @@ function Island({ onIsActive }) {
       "
       >
         <AnimatedText
+          textX={textY}
           text="Experience the best of island"
-          classes="text-[2.2em] prism lg:text-[4.625em] lg:w-[700px] lg:leading-[100px] z-[30]"
+          classes="text-[2.2em] prism lg:text-[4.625em] lg:w-[700px] lg:leading-[100px]"
           controls={controls}
         />
       </div>
       <motion.video
         src={island}
-        className={`w-full h-auto lg:w-[600px] `}
+        className={`w-full h-auto lg:w-[500px]`}
         muted
         autoPlay
         loop
+        style={{ scale: videoScale }}
       />
-      <div ref={ref} className="-translate-y-10 lg:-translate-y-14">
+      <div className="-translate-y-10 lg:-translate-y-14">
         <AnimatedText
+          textX={textY}
+          opacityY={opacityY}
           text="Living on Bali"
           classes="text-[2.8em] leading-10 prism  lg:text-[4.625em]"
           controls={controls}
         />
       </div>
-      <AnimatedP>
-        <p className="leading-4 text-[.75em] text-light mb-20 lg:w-[700px]">
-          LIVING ON ONE24 OFFERS A CHANCE TO EXPERIENCE THE ISLAND&apos;S LUSH
-          GREEN LANDSCAPES, PICTURESQUE BEACHES, AND WARM CLIMATE ALL YEAR
-          ROUND. THE ISLAND IS HOME TO A DIVERSE ARRAY OF OUTDOOR ACTIVITIES,
-          FROM HIKING TO PARAGLIDING, AND THE LOCAL CULTURE IS RICH WITH HISTORY
-          AND TRADITION. IN ADDITION, MADEIRA HAS A GROWING ECONOMY, MAKING IT
-          AN EXCELLENT PLACE TO LIVE AND WORK. WHETHER YOU&apos;RE LOOKING FOR A
-          PEACEFUL RETREAT OR AN EXCITING ADVENTURE, MADEIRA ISLAND HAS
-          SOMETHING FOR EVERYONE.
-        </p>
-      </AnimatedP>
+
+      <p
+        id="rotation__text"
+        className="text-[.75em]  mb-20 lg:w-[400px] lg:absolute top-1/2  -left-[6rem]  lg:rotate-90 font-thin leading-5 lg:hover:left-5 lg:hover:rotate-0 duration-300 ease-in-out"
+      >
+        LIVING ON ONE24 OFFERS A CHANCE TO EXPERIENCE THE ISLAND&apos;S LUSH
+        GREEN LANDSCAPES, PICTURESQUE BEACHES, AND WARM CLIMATE ALL YEAR ROUND.
+        THE ISLAND IS HOME TO A DIVERSE ARRAY OF OUTDOOR ACTIVITIES, FROM HIKING
+        TO PARAGLIDING, AND THE LOCAL CULTURE IS RICH WITH HISTORY AND
+        TRADITION. IN ADDITION, MADEIRA HAS A GROWING ECONOMY, MAKING IT AN
+        EXCELLENT PLACE TO LIVE AND WORK. WHETHER YOU&apos;RE LOOKING FOR A
+        PEACEFUL RETREAT OR AN EXCITING ADVENTURE, MADEIRA ISLAND HAS SOMETHING
+        FOR EVERYONE.
+      </p>
     </section>
   );
 }

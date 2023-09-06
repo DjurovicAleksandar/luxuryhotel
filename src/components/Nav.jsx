@@ -22,7 +22,10 @@ const colors = [
 ];
 
 function Nav({ scrollYProgress, isActive, onIsActive }) {
-  const color = useTransform(scrollYProgress, [0, 0.2, 0.65, 1], colors);
+  const color =
+    window.innerWidth >= 1024
+      ? useTransform(scrollYProgress, [0, 0.2, 0.65, 1], colors)
+      : "black";
 
   return (
     <motion.nav

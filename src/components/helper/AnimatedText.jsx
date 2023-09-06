@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 function AnimatedText(props) {
-  const { text, classes, controls, textY, opacityY } = props;
+  const { text, classes, controls, textY, opacityY, textX } = props;
   const variantsX = {
     visible: {
       opacity: 1,
@@ -14,7 +14,7 @@ function AnimatedText(props) {
     <motion.div
       transition={{ delay: 0.3 }}
       className={`text-[2.2em] uppercase ${classes} pointer-events-none`}
-      style={{ x: textY, opacity: opacityY }}
+      style={{ x: textY, opacity: opacityY, y: textX }}
     >
       {text.split("").map((lettter, i) => {
         return (

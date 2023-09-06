@@ -11,9 +11,12 @@ function Home({ onIsActive, scrollY }) {
   const ref = useRef(null);
   const isInView = useInView(ref);
   const controls = useAnimation();
-  // const paralaxY = useTransform(scrollY, [0, 0.1], ["0%", "40%"]);
-  // const textY = useTransform(scrollY, [0, 0.4], ["0%", "30%"]);
-  // const opacityY = useTransform(scrollY, [0, 0.1], [1, 0]);
+  const paralaxY =
+    window.innerWidth >= 1024 && useTransform(scrollY, [0, 0.1], ["0%", "40%"]);
+  const textY =
+    window.innerWidth >= 1024 && useTransform(scrollY, [0, 0.4], ["0%", "30%"]);
+  const opacityY =
+    window.innerWidth >= 1024 && useTransform(scrollY, [0, 0.1], [1, 0]);
 
   useEffect(() => {
     if (isInView) {
@@ -29,7 +32,7 @@ function Home({ onIsActive, scrollY }) {
       ref={ref}
       id="home"
       className="relative lg:content h-screen homebackground text-white"
-      // style={{ x: paralaxY }}
+      style={{ x: paralaxY }}
     >
       <Badge />
       <div className="w-full h-full flex flex-col absolute top-0 items-center justify-around pt-[6rem] text-center bg-black/30">
@@ -38,12 +41,12 @@ function Home({ onIsActive, scrollY }) {
             text="Comfort and elegance at california hotel"
             classes="text-[12vw] font-thin mb-5 prism lg:text-[6.280rem] lg:w-[1000px] lg:leading-[100px]"
             controls={controls}
-            // textY={textY}
-            // opacityY={opacityY}
+            textY={textY}
+            opacityY={opacityY}
           />
           <motion.p
             className="title__sub w-[240px] text-[12px] mx-auto uppercase mt-4 lg:text-[1.62em] lg:w-[600px] font-light tracking-wider"
-            // style={{ x: textY, opacity: opacityY }}
+            style={{ x: textY, opacity: opacityY }}
           >
             Such a lovely face, plenty of room at the Hotel California. Any time
             of year,You can find it here
@@ -51,7 +54,7 @@ function Home({ onIsActive, scrollY }) {
         </div>
         <motion.div
           className="flex w-full p-4 items-start justify-between lg:justify-start lg:gap-10 lg:ml-8 text-xs"
-          // style={{ x: textY, opacity: opacityY }}
+          style={{ x: textY, opacity: opacityY }}
         >
           <a className="text-white" href="#">
             Call us Today

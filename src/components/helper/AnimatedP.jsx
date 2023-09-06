@@ -18,7 +18,7 @@ function AnimatedP(props) {
   useEffect(() => {
     if (isInView) {
       controls.start("visible");
-    }
+    } else controls.start("hidden");
   }, [isInView]);
   return (
     <motion.div

@@ -62,7 +62,7 @@ function Availability({ onIsActive }) {
     <section
       id="availability"
       ref={ref}
-      className="relative lg:content pl-8 pt-28"
+      className="relative lg:content p-4 lg:pl-8 pt-28"
     >
       <h2 className="text-[.8125em] uppercase text-gray-500 mb-4">
         Availability
@@ -75,7 +75,7 @@ function Availability({ onIsActive }) {
         />
       </div>
       <div className="my-4 border-black/40 border-[1px] border-x-0 border-b-0 py-4 w-full lg:flex gap-10">
-        <div className="w-full lg:w-fit flex items-center justify-between lg:justify-start gap-6">
+        <div className="w-full lg:w-fit flex items-center justify-between lg:justify-start gap-6 mb-5 lg:mb-0">
           <p className="uppercase text-[.825em] text-[#c88e57]">
             Download brochure
           </p>

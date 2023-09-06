@@ -75,7 +75,7 @@ function Inquire({ onIsActive }) {
   }, [isInView, controls]);
   return (
     <>
-      <div className="hidden lg:block p-4 -translate-y-0">
+      <div className="block p-4 -translate-y-[33px] lg:-translate-y-0 lg:pl-4">
         {aparmentList.map(({ fraction, beedrooms, area, floorplan }, i) => {
           return (
             <li
@@ -89,7 +89,7 @@ function Inquire({ onIsActive }) {
               <p>{area}</p>
               <button
                 onClick={() => window.open(floorplan, "_blank")}
-                className="uppercase text-xs px-5 py-1 border-black border-[1px] rounded-2xl hover:bg-black hover:text-white duration-200 ease-linear cursor-pointer"
+                className="uppercase text-xs px-5 py-1 border-black border-[1px] rounded-2xl hover:bg-black hover:text-white duration-200 ease-linear cursor-pointer lg:-translate-x-3"
               >
                 View floorplan
               </button>
@@ -100,7 +100,7 @@ function Inquire({ onIsActive }) {
       <section
         ref={ref}
         id="inquire"
-        className="inquire mt-8 pt-8 text-center text-white p-4 relative"
+        className="inquire mt-8 pt-8 text-center text-white p-4 relative "
       >
         <div>
           <AnimatedText
