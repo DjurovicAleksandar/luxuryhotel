@@ -1,6 +1,8 @@
 import { useAnimation, useInView, useScroll } from "framer-motion";
 import { useEffect, useRef } from "react";
 import AnimatedText from "./helper/AnimatedText";
+import Button from "./helper/Button";
+import brochure from "../assets/download/brochure.jpg";
 
 function Availability({ onIsActive }) {
   const ref = useRef(null);
@@ -9,12 +11,42 @@ function Availability({ onIsActive }) {
   const controls = useAnimation();
 
   const aparmentList = [
-    { fraction: "K", beedrooms: 2, area: 147.01, floorplan: "view" },
-    { fraction: "L", beedrooms: 2, area: 139.41, floorplan: "view" },
-    { fraction: "M", beedrooms: 2, area: 147.35, floorplan: "view" },
-    { fraction: "N", beedrooms: 3, area: 290.24, floorplan: "view" },
-    { fraction: "J", beedrooms: 1, area: 122.51, floorplan: "view" },
-    { fraction: "R", beedrooms: 1, area: 110.21, floorplan: "view" },
+    {
+      fraction: "K",
+      beedrooms: 2,
+      area: 147.01,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
+    {
+      fraction: "L",
+      beedrooms: 2,
+      area: 139.41,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
+    {
+      fraction: "M",
+      beedrooms: 2,
+      area: 147.35,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
+    {
+      fraction: "N",
+      beedrooms: 3,
+      area: 290.24,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
+    {
+      fraction: "J",
+      beedrooms: 1,
+      area: 122.51,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
+    {
+      fraction: "R",
+      beedrooms: 1,
+      area: 110.21,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
   ];
 
   useEffect(() => {
@@ -44,20 +76,18 @@ function Availability({ onIsActive }) {
       </div>
       <div className="my-4 border-black/40 border-[1px] border-x-0 border-b-0 py-4 w-full lg:flex gap-10">
         <div className="w-full lg:w-fit flex items-center justify-between lg:justify-start gap-6">
-          <button className="uppercase text-[.825em] text-[#c88e57]">
+          <p className="uppercase text-[.825em] text-[#c88e57]">
             Download brochure
-          </button>
-          <a className="px-[15px] py-[12px] rounded-full bg-[#c88e57] text-white text-[10px]  flex items-center justify-center mb-4 lg:mb-0">
-            &#8594;
-          </a>
+          </p>
+          <Button
+            onMouseClick={() => {
+              window.location.href = brochure;
+            }}
+          ></Button>
         </div>
         <div className="w-full lg:w-fit flex items-center justify-between lg:justify-start gap-5">
-          <button className="uppercase text-[.825em]">
-            Make an appointement
-          </button>
-          <a className="px-[15px] py-[12px] rounded-full bg-[black] text-white text-[10px]  flex items-center justify-center">
-            &#8594;
-          </a>
+          <p className="uppercase text-[.825em]">Make an appointement</p>
+          <Button color="black" onMouseClick={() => {}}></Button>
         </div>
       </div>
       <ul>
@@ -78,8 +108,11 @@ function Availability({ onIsActive }) {
               <p>{fraction}</p>
               <p>{beedrooms}</p>
               <p>{area}</p>
-              <button className="uppercase text-xs px-5 py-1 border-black border-[1px] rounded-2xl">
-                {floorplan}
+              <button
+                onClick={() => window.open(floorplan, "_blank")}
+                className="uppercase text-xs px-5 py-1 border-black border-[1px] rounded-2xl hover:bg-black hover:text-white duration-200 ease-linear cursor-pointer"
+              >
+                View floorplan
               </button>
             </li>
           );

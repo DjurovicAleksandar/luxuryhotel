@@ -6,19 +6,15 @@ import {
   useScroll,
   useTransform,
   motion,
-  useMotionValueEvent,
 } from "framer-motion";
 import AnimatedText from "./helper/AnimatedText";
+import AnimatedP from "./helper/AnimatedP";
 
 function Island({ onIsActive }) {
   const ref = useRef(null);
   const isInView = useInView(ref);
   const controls = useAnimation();
-  const { scrollY, scrollYProgress } = useScroll();
-
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    // console.log("Page scroll: ", latest);
-  });
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     if (isInView) {
@@ -33,7 +29,7 @@ function Island({ onIsActive }) {
     <section
       ref={ref}
       id="the-island"
-      className="relative lg:h-full  lg:content bg-[#c88e57] text-white p-4 pt-12 text-center lg:flex flex-col items-center justify-center"
+      className="relative lg:h-full  lg:content  bg-[#c88e57] text-white p-4 pt-12 text-center lg:flex flex-col items-center justify-center"
     >
       <h3 className="uppercase  font-light  lg:translate-y-14">the island</h3>
       <div
@@ -48,11 +44,10 @@ function Island({ onIsActive }) {
       </div>
       <motion.video
         src={island}
-        className={`w-full h-auto lg:w-[600px]`}
+        className={`w-full h-auto lg:w-[600px] `}
         muted
         autoPlay
         loop
-        style={{ scale: scrollYProgress }}
       />
       <div ref={ref} className="-translate-y-10 lg:-translate-y-14">
         <AnimatedText
@@ -61,16 +56,18 @@ function Island({ onIsActive }) {
           controls={controls}
         />
       </div>
-      <p className="leading-4 text-[.75em] text-light mb-20 lg:w-[700px]">
-        LIVING ON ONE24 OFFERS A CHANCE TO EXPERIENCE THE ISLAND&apos;S LUSH
-        GREEN LANDSCAPES, PICTURESQUE BEACHES, AND WARM CLIMATE ALL YEAR ROUND.
-        THE ISLAND IS HOME TO A DIVERSE ARRAY OF OUTDOOR ACTIVITIES, FROM HIKING
-        TO PARAGLIDING, AND THE LOCAL CULTURE IS RICH WITH HISTORY AND
-        TRADITION. IN ADDITION, MADEIRA HAS A GROWING ECONOMY, MAKING IT AN
-        EXCELLENT PLACE TO LIVE AND WORK. WHETHER YOU&apos;RE LOOKING FOR A
-        PEACEFUL RETREAT OR AN EXCITING ADVENTURE, MADEIRA ISLAND HAS SOMETHING
-        FOR EVERYONE.
-      </p>
+      <AnimatedP>
+        <p className="leading-4 text-[.75em] text-light mb-20 lg:w-[700px]">
+          LIVING ON ONE24 OFFERS A CHANCE TO EXPERIENCE THE ISLAND&apos;S LUSH
+          GREEN LANDSCAPES, PICTURESQUE BEACHES, AND WARM CLIMATE ALL YEAR
+          ROUND. THE ISLAND IS HOME TO A DIVERSE ARRAY OF OUTDOOR ACTIVITIES,
+          FROM HIKING TO PARAGLIDING, AND THE LOCAL CULTURE IS RICH WITH HISTORY
+          AND TRADITION. IN ADDITION, MADEIRA HAS A GROWING ECONOMY, MAKING IT
+          AN EXCELLENT PLACE TO LIVE AND WORK. WHETHER YOU&apos;RE LOOKING FOR A
+          PEACEFUL RETREAT OR AN EXCITING ADVENTURE, MADEIRA ISLAND HAS
+          SOMETHING FOR EVERYONE.
+        </p>
+      </AnimatedP>
     </section>
   );
 }

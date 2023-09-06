@@ -1,5 +1,16 @@
-import { color, motion, useAnimation } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
+
+const roundVariants = {
+  hidden: {
+    opacity: 0,
+    x: -100,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+  },
+};
 
 function NavButton({
   value,
@@ -11,20 +22,10 @@ function NavButton({
 }) {
   const roundControls = useAnimation();
 
-  const roundVariants = {
-    hidden: {
-      opacity: 0,
-      x: -100,
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-    },
-  };
-
   useEffect(() => {
-    if (isActive === name) roundControls.start("visible");
-    else roundControls.start("hidden");
+    if (isActive === name) {
+      roundControls.start("visible");
+    } else roundControls.start("hidden");
   }, [roundControls, name, isActive]);
 
   return (

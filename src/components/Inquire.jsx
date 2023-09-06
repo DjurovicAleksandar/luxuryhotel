@@ -1,6 +1,7 @@
 import { useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
 import AnimatedText from "./helper/AnimatedText";
+import LargeBtn from "./helper/LargeBtn";
 
 function Inquire({ onIsActive }) {
   const ref = useRef(null);
@@ -8,15 +9,60 @@ function Inquire({ onIsActive }) {
   const controls = useAnimation();
 
   const aparmentList = [
-    { fraction: "T", beedrooms: 3, area: 152.34, floorplan: "view" },
-    { fraction: "V", beedrooms: 2, area: 132.42, floorplan: "view" },
-    { fraction: "G", beedrooms: 2, area: 123.01, floorplan: "view" },
-    { fraction: "I", beedrooms: 3, area: 220.21, floorplan: "view" },
-    { fraction: "U", beedrooms: 1, area: 115.22, floorplan: "view" },
-    { fraction: "E", beedrooms: 1, area: 114.32, floorplan: "view" },
-    { fraction: "A", beedrooms: 4, area: 320.21, floorplan: "view" },
-    { fraction: "B", beedrooms: 5, area: 440.11, floorplan: "view" },
-    { fraction: "C", beedrooms: 2, area: 135.12, floorplan: "view" },
+    {
+      fraction: "T",
+      beedrooms: 3,
+      area: 152.34,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
+    {
+      fraction: "V",
+      beedrooms: 2,
+      area: 132.42,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
+    {
+      fraction: "G",
+      beedrooms: 2,
+      area: 123.01,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
+    {
+      fraction: "I",
+      beedrooms: 3,
+      area: 220.21,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
+    {
+      fraction: "U",
+      beedrooms: 1,
+      area: 115.22,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
+    {
+      fraction: "E",
+      beedrooms: 1,
+      area: 114.32,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
+    {
+      fraction: "A",
+      beedrooms: 4,
+      area: 320.21,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
+    {
+      fraction: "B",
+      beedrooms: 5,
+      area: 440.11,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
+    {
+      fraction: "C",
+      beedrooms: 2,
+      area: 135.12,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
   ];
 
   useEffect(() => {
@@ -41,8 +87,11 @@ function Inquire({ onIsActive }) {
               <p>{fraction}</p>
               <p>{beedrooms}</p>
               <p>{area}</p>
-              <button className="uppercase text-xs px-5 py-1 border-black border-[1px] rounded-2xl">
-                {floorplan}
+              <button
+                onClick={() => window.open(floorplan, "_blank")}
+                className="uppercase text-xs px-5 py-1 border-black border-[1px] rounded-2xl hover:bg-black hover:text-white duration-200 ease-linear cursor-pointer"
+              >
+                View floorplan
               </button>
             </li>
           );
@@ -51,7 +100,7 @@ function Inquire({ onIsActive }) {
       <section
         ref={ref}
         id="inquire"
-        className="inquire mt-8 pt-8 text-center text-white p-4"
+        className="inquire mt-8 pt-8 text-center text-white p-4 relative"
       >
         <div>
           <AnimatedText
@@ -60,9 +109,8 @@ function Inquire({ onIsActive }) {
             controls={controls}
           />
         </div>
-        <button className="mx-auto flex rounded-full w-[8rem] h-[8rem] items-center justify-center bg-[#c88e57] text-white m7-8 text-[0.825em]">
-          SCHEDULE
-        </button>
+        <LargeBtn text="SCHEDULE" position="relative left-1/2 -ml-14" />
+
         <div className="w-full py-8 border-white border-[1px] border-x-0 border-t-0 mb-8">
           <p className="uppercase text-[1.25em] font-light">
             need a quick response? our sales consultants are ready to help, when

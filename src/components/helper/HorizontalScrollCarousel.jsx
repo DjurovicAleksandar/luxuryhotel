@@ -6,7 +6,7 @@ function HorizontalScrollCarousel({ children, scrollYProgress, tef }) {
 
   return (
     <div id="horizontal__container" ref={tef} className="relative h-[500vh]">
-      <div className="sticky top-0 flex  h-screen overflow-hidden w-fit ">
+      <div className="sticky__con sticky top-0 flex  h-screen overflow-hidden w-fit ">
         <motion.div id="horizon" style={{ x }} className="flex w-full">
           {children}
         </motion.div>

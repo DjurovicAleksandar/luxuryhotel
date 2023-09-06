@@ -2,12 +2,17 @@ import bedroom from "../assets/img/aparments/bedroom.jpg";
 import bathroom from "../assets/img/aparments/bathroom.jpg";
 import kitchen from "../assets/img/aparments/kitchen.jpg";
 import pool from "../assets/img/aparments/pool.jpg";
-import { useInView, useAnimation, motion } from "framer-motion";
+import { useInView, useAnimation, useTransform, motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import AnimatedText from "./helper/AnimatedText";
+import AnimateImages from "./helper/AnimateImages";
+import Button from "./helper/Button";
+import { scrollToPosition } from "./helper/HelpserFunctions";
 
-function Apartments({ onIsActive }) {
+function Apartments({ onIsActive, scrollY }) {
   const ref = useRef(null);
+
+  const paralaxY = useTransform(scrollY, [0, 0.5], ["0%", "1000%"]);
 
   const isInView = useInView(ref);
 
@@ -32,10 +37,11 @@ function Apartments({ onIsActive }) {
     }
   }, [isInView, controls, onIsActive]);
   return (
-    <section
+    <motion.section
       ref={ref}
       id="apartments"
-      className="relative p-4 lg:w-[160vw] lg:flex  items-center gap-5"
+      className="relative p-4 lg:w-[160vw] lg:flex  items-center gap-5 bg-[#f7f4ef]"
+      // style={{ x: -paralaxY }}
     >
       <div className="lg:h-[38rem] flex flex-col justify-between">
         <div className="border-[#4f414170]  border-solid border-[1px] border-x-0 border-b-0 lg:border-t-0 py-2 text-[0.8124rem] mb-10 lg:mb-0">
@@ -69,68 +75,64 @@ function Apartments({ onIsActive }) {
             <p className="uppercase text-[#c88e57] text-xs">
               available apartments
             </p>
-            <a className="w-[2.5rem] h-[2.5rem] rounded-full bg-[#c88e57] text-white text-[10px]  flex items-center justify-center">
-              &#8594;
-            </a>
+            <Button onMouseClick={() => scrollToPosition(5.4)} />
           </div>
         </div>
       </div>
 
       {window.innerWidth >= 1024 ? (
         <div className="flex items-center">
-          <img
-            className="w-full lg:w-[50rem] h-auto lg:h-[38rem] "
-            alt="pool"
-            src={pool}
-          />
+          <AnimateImages name="Pool">
+            <img
+              className="w-full lg:w-[50rem] h-auto lg:h-[38rem] "
+              alt="pool"
+              src={pool}
+            />
+          </AnimateImages>
 
           <div className="mx-4 flex flex-col">
-            <img
-              className="w-full lg:w-[35rem] h-auto lg:h-[18.5rem] mb-4"
-              alt="kitchen"
-              src={kitchen}
-            />
-            <img
-              className="w-full lg:w-[35rem] h-auto lg:h-[18.5rem] "
-              alt="bathroom"
-              src={bathroom}
-            />
+            <AnimateImages>
+              {" "}
+              <img
+                className="w-full lg:w-[35rem] h-auto lg:h-[18.5rem] mb-4"
+                alt="kitchen"
+                src={kitchen}
+              />
+              <img
+                className="w-full lg:w-[35rem] h-auto lg:h-[18.5rem] z-50"
+                alt="bathroom"
+                src={bathroom}
+              />
+            </AnimateImages>
           </div>
 
-          <img
-            className="w-full lg:w-[50rem] h-auto lg:h-[38rem]"
-            alt="bedroom"
-            src={bedroom}
-          />
+          <AnimateImages name="Bedroom">
+            <img
+              className="w-full lg:w-[50rem] h-auto lg:h-[38rem]"
+              alt="bedroom"
+              src={bedroom}
+            />
+          </AnimateImages>
         </div>
       ) : (
         <div className="">
           {aparments.map((src, i) => {
             return (
               <div key={i} className="relative w-full h-full">
-                <img
-                  className="w-full lg:w-[50rem] h-auto lg:h-[38rem] mb-2"
-                  src={src}
-                  alt="i"
-                  key={i}
-                />
-                {/* <div
-                // initial="hidden"
-                // animate={controls}
-                // variants={variantsX}
-                // transition={{
-                //   delay: 0.1,
-                //   duration: 0.35,
-                // }}
-                ref={ref2}
-                className={`bg-[#c88e57] absolute inset-0 w-full`}
-              /> */}
+                <AnimateImages>
+                  <img
+                    className="w-full lg:w-[50rem] h-auto lg:h-[38rem] mb-2"
+                    src={src}
+                    alt="i"
+                    key={i}
+                  />
+                </AnimateImages>
               </div>
             );
           })}
         </div>
       )}
-    </section>
+    </motion.section>
   );
 }
 

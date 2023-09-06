@@ -1,9 +1,11 @@
 import { useEffect, useRef } from "react";
 import visionPic from "../assets/img/visionPic.jpg";
-import { useAnimation, useInView, motion, isDragActive } from "framer-motion";
+import { useAnimation, useInView } from "framer-motion";
 import AnimatedText from "./helper/AnimatedText";
+import AnimateImages from "./helper/AnimateImages";
+import AnimatedP from "./helper/AnimatedP";
 
-function Vision({ onIsActive }) {
+function Vision({ onIsActive, scrollY }) {
   const ref = useRef(null);
   const isInView = useInView(ref);
   const controls = useAnimation();
@@ -21,7 +23,7 @@ function Vision({ onIsActive }) {
     <section
       ref={ref}
       id="vision"
-      className="relative p-4 lg:w-[40vw]  lg:pt-24 lg:flex flex-col"
+      className="relative p-4 lg:w-[40vw]  lg:pt-24 lg:flex flex-col bg-[#f7f4ef]"
     >
       <h3 className="uppercase text-[0.8124rem] my-5 text-[#6f6f6f] ">
         elevate your lifestyle
@@ -35,16 +37,20 @@ function Vision({ onIsActive }) {
         />
       </div>
       <div className="relative w-full h-full flex items-center gap-5">
-        <img
-          className="w-full lg:w-[14rem] h-auto mb-5 lg:mb-2"
-          src={visionPic}
-          alt="Lopud island"
-        />
-        <p className="text-[0.8124rem] mb-10 lg:mb-20  lg:w-[18rem] lg:text-xs">
-          FEATURING STRAIGHT LINES AND MODERN AMENITIES, OUR DEVELOPMENT WILL
-          OFFER RESIDENTS THE ULTIMATE IN STYLE AND COMFORT. OUR VISION IS TO
-          SET A NEW STANDARD FOR LUXURY LIVING ON MADEIRA ISLAND.
-        </p>
+        <AnimateImages>
+          <img
+            className="w-full lg:w-[14rem] h-auto mb-5 lg:mb-2"
+            src={visionPic}
+            alt="Sunset"
+          />
+        </AnimateImages>
+        <AnimatedP>
+          <p className="text-[0.8124rem] mb-10 lg:mb-20  lg:w-[18rem] lg:text-xs">
+            FEATURING STRAIGHT LINES AND MODERN AMENITIES, OUR DEVELOPMENT WILL
+            OFFER RESIDENTS THE ULTIMATE IN STYLE AND COMFORT. OUR VISION IS TO
+            SET A NEW STANDARD FOR LUXURY LIVING ON MADEIRA ISLAND.
+          </p>
+        </AnimatedP>
       </div>
     </section>
   );

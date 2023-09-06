@@ -3,6 +3,8 @@ import location from "../assets/img/location.jpg";
 import { useEffect, useRef, useState } from "react";
 import { useAnimation, useInView } from "framer-motion";
 import AnimatedText from "./helper/AnimatedText";
+import AnimateImages from "./helper/AnimateImages";
+import Button from "./helper/Button";
 
 function Location({ onIsActive }) {
   const ref = useRef(null);
@@ -11,15 +13,15 @@ function Location({ onIsActive }) {
 
   useEffect(() => {
     if (isInView) {
-      console.log("second");
       controls.start("visible");
       onIsActive("location");
     } else {
       controls.start("hidden");
     }
   }, [isInView, controls]);
+
   return (
-    <section ref={ref} id="location" className="relative lg:content lg:flex">
+    <section ref={ref} id="location" className="relative lg:w-[100vw] lg:flex">
       <div className="py-6 lg:pl-[100px] border-black/40 border-[1px] border-x-0 border-t-0 lg:border-b-0 mb-4 relative">
         <Marquee
           speed={90}
@@ -53,16 +55,23 @@ function Location({ onIsActive }) {
         </div>
         <div className="hidden text-[16px] absolute bottom-20 lg:flex items-center justify-center gap-4">
           <p className="text-[#c88e57] uppercase">See location</p>
-          <a className="flex w-[2.5rem] h-[2.5rem] rounded-full bg-[#c88e57] text-white  items-center justify-center ">
-            &#8594;
-          </a>
+          <Button
+            onMouseClick={() => {
+              window.open(
+                "https://www.google.com/maps/place/GR8+Solutions+Agency/@43.8170406,18.3615588,15z/data=!4m2!3m1!1s0x0:0xe994d4c5f16eac9e?sa=X&ved=2ahUKEwjV0uLTwIuBAxVLiv0HHZRNAgcQ_BJ6BAhAEAA&ved=2ahUKEwjV0uLTwIuBAxVLiv0HHZRNAgcQ_BJ6BAhbEAg&hl=bs",
+                "_blank"
+              );
+            }}
+          />
         </div>
       </div>
-      <img
-        src={location}
-        alt="Hotel"
-        className="w-full h-auto mb-8 lg:w-[50%]"
-      />
+      <AnimateImages>
+        <img
+          src={location}
+          // alt="Hotel"
+          className="w-full h-auto mb-8 lg:h-screen"
+        />
+      </AnimateImages>
     </section>
   );
 }

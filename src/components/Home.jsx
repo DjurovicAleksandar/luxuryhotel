@@ -1,33 +1,19 @@
 import { useEffect, useRef } from "react";
 import Badge from "./HomeSubComponenets/Badge";
 import AnimatedText from "./helper/AnimatedText";
-import {
-  useAnimation,
-  useInView,
-  motion,
-  useMotionValue,
-  useDragControls,
-} from "framer-motion";
+import { useAnimation, useInView, useTransform, motion } from "framer-motion";
 
-function Home({ onIsActive }) {
+import LargeBtn from "./helper/LargeBtn";
+
+import { scrollToPosition } from "./helper/HelpserFunctions";
+
+function Home({ onIsActive, scrollY }) {
   const ref = useRef(null);
   const isInView = useInView(ref);
   const controls = useAnimation();
-  const buttonControls = useAnimation();
-
-  const variantsX = {
-    visible: {
-      scale: 1,
-    },
-    hidden: { scale: 0 },
-  };
-
-  const hoverAnimation = {
-    scale: 1, // Increase size on hover
-    transition: {
-      duration: 0.3,
-    },
-  };
+  const paralaxY = useTransform(scrollY, [0, 0.1], ["0%", "40%"]);
+  const textY = useTransform(scrollY, [0, 0.4], ["0%", "30%"]);
+  const opacityY = useTransform(scrollY, [0, 0.1], [1, 0]);
 
   useEffect(() => {
     if (isInView) {
@@ -39,10 +25,11 @@ function Home({ onIsActive }) {
   }, [isInView, controls]);
 
   return (
-    <section
+    <motion.section
       ref={ref}
       id="home"
       className="relative lg:content homebackground text-white"
+      style={{ x: paralaxY }}
     >
       <Badge />
       <div className="w-full h-full flex flex-col absolute top-0 items-center justify-around pt-[6rem] text-center bg-black/30">
@@ -51,13 +38,21 @@ function Home({ onIsActive }) {
             text="Comfort and elegance at california hotel"
             classes="text-[12vw] font-thin mb-5 prism lg:text-[6.280rem] lg:w-[1000px] lg:leading-[100px]"
             controls={controls}
+            textY={textY}
+            opacityY={opacityY}
           />
-          <p className="title__sub w-[240px] text-[12px] mx-auto uppercase mt-4 lg:text-[1.62em] lg:w-[600px] font-light tracking-wider">
+          <motion.p
+            className="title__sub w-[240px] text-[12px] mx-auto uppercase mt-4 lg:text-[1.62em] lg:w-[600px] font-light tracking-wider"
+            style={{ x: textY, opacity: opacityY }}
+          >
             Such a lovely face, plenty of room at the Hotel California. Any time
             of year,You can find it here
-          </p>
+          </motion.p>
         </div>
-        <div className="flex w-full p-4 items-start justify-between lg:justify-start lg:gap-10 lg:ml-8 text-xs">
+        <motion.div
+          className="flex w-full p-4 items-start justify-between lg:justify-start lg:gap-10 lg:ml-8 text-xs"
+          style={{ x: textY, opacity: opacityY }}
+        >
           <a className="text-white" href="#">
             Call us Today
           </a>
@@ -69,28 +64,13 @@ function Home({ onIsActive }) {
             <p>Local Call, Fees may apply</p>
           </div>
 
-          <motion.button
-            whileHover={() => {
-              buttonControls.start("visible");
-              return hoverAnimation;
-            }}
-            onMouseLeave={() => buttonControls.start("hidden")}
-            className="hidden lg:flex absolute right-10 bottom-14  rounded-full w-[8rem] h-[8rem] items-center justify-center bg-[#c88e57]  text-[#fff] mr-8 text-[0.825em] ease-linear duration-200 hover:shadow-xl hover:bottom-20"
-          >
-            SCROLL
-            <motion.span
-              initial="hidden"
-              variants={variantsX}
-              animate={buttonControls}
-              transition={{ duration: 0.2 }}
-              className="hidden lg:flex absolute inset-0  rounded-full w-[8rem] h-[8rem] items-center justify-center bg-[#fff]  text-[#c88e57] mr-8"
-            >
-              SCROLL
-            </motion.span>
-          </motion.button>
-        </div>
+          <LargeBtn
+            text="Scroll"
+            onMouseClick={() => scrollToPosition(1.072)}
+          />
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
