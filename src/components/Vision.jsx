@@ -13,7 +13,7 @@ function Vision({ onIsActive, scrollY }) {
   useEffect(() => {
     if (isInView) {
       controls.start("visible");
-      onIsActive("home");
+      if (window.innerWidth >= 1024) onIsActive("home");
     } else {
       controls.start("hidden");
     }

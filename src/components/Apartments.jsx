@@ -12,7 +12,7 @@ import { scrollToPosition } from "./helper/HelpserFunctions";
 function Apartments({ onIsActive, scrollY }) {
   const ref = useRef(null);
 
-  const paralaxY = useTransform(scrollY, [0, 0.5], ["0%", "1000%"]);
+  // const paralaxY = useTransform(scrollY, [0, 0.5], ["0%", "1000%"]);
 
   const isInView = useInView(ref);
 
@@ -31,7 +31,7 @@ function Apartments({ onIsActive, scrollY }) {
     if (isInView) {
       controls.start("visible");
 
-      onIsActive("apartments");
+      if (window.innerWidth >= 1024) onIsActive("apartments");
     } else {
       controls.start("hidden");
     }

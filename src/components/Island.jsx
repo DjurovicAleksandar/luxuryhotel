@@ -19,7 +19,7 @@ function Island({ onIsActive }) {
   useEffect(() => {
     if (isInView) {
       controls.start("visible");
-      onIsActive("the-island");
+      if (window.innerWidth >= 1024) onIsActive("the-island");
     } else {
       controls.start("hidden");
     }

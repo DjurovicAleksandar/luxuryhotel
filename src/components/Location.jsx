@@ -14,7 +14,7 @@ function Location({ onIsActive }) {
   useEffect(() => {
     if (isInView) {
       controls.start("visible");
-      onIsActive("location");
+      if (window.innerWidth >= 1024) onIsActive("location");
     } else {
       controls.start("hidden");
     }

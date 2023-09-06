@@ -68,7 +68,7 @@ function Inquire({ onIsActive }) {
   useEffect(() => {
     if (isInView) {
       controls.start("visible");
-      onIsActive("inquire");
+      if (window.innerWidth >= 1024) onIsActive("inquire");
     } else {
       controls.start("hidden");
     }

@@ -52,7 +52,7 @@ function Availability({ onIsActive }) {
   useEffect(() => {
     if (isInView) {
       controls.start("visible");
-      onIsActive("availability");
+      if (window.innerWidth >= 1024) onIsActive("availability");
     } else {
       controls.start("hidden");
     }
