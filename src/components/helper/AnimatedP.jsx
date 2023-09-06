@@ -18,8 +18,9 @@ function AnimatedP(props) {
   useEffect(() => {
     if (isInView) {
       controls.start("visible");
-    } else controls.start("hidden");
+    }
   }, [isInView]);
+
   return (
     <motion.div
       ref={ref}
@@ -27,14 +28,7 @@ function AnimatedP(props) {
       className={` ${classes} pointer-events-none`}
       style={{ x: textY, opacity: opacityY }}
     >
-      <motion.div
-        initial="hidden"
-        animate={controls}
-        variants={variantsX}
-        transition={{
-          duration: 1,
-        }}
-      >
+      <motion.div initial="hidden" animate={controls} variants={variantsX}>
         {children}
       </motion.div>
     </motion.div>

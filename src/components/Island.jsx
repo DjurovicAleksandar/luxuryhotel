@@ -8,7 +8,6 @@ import {
   motion,
 } from "framer-motion";
 import AnimatedText from "./helper/AnimatedText";
-import AnimatedP from "./helper/AnimatedP";
 
 function Island({ onIsActive }) {
   const ref = useRef(null);

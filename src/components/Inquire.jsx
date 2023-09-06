@@ -10,56 +10,62 @@ function Inquire({ onIsActive }) {
 
   const aparmentList = [
     {
-      fraction: "T",
-      beedrooms: 3,
-      area: 152.34,
-      floorplan: "https://imgur.com/a/qO7Aix5",
-    },
-    {
-      fraction: "V",
-      beedrooms: 2,
-      area: 132.42,
-      floorplan: "https://imgur.com/a/qO7Aix5",
-    },
-    {
-      fraction: "G",
-      beedrooms: 2,
-      area: 123.01,
-      floorplan: "https://imgur.com/a/qO7Aix5",
-    },
-    {
       fraction: "I",
       beedrooms: 3,
+      floor: 3,
+      side: "left",
+      parking: "yes",
+      availability: "available",
       area: 220.21,
       floorplan: "https://imgur.com/a/qO7Aix5",
     },
     {
       fraction: "U",
       beedrooms: 1,
+      floor: 3,
+      side: "left",
+      parking: "yes",
+      availability: "available",
       area: 115.22,
       floorplan: "https://imgur.com/a/qO7Aix5",
     },
     {
       fraction: "E",
       beedrooms: 1,
+      floor: 3,
+      side: "right",
+      parking: "yes",
+      availability: "available",
       area: 114.32,
       floorplan: "https://imgur.com/a/qO7Aix5",
     },
     {
       fraction: "A",
       beedrooms: 4,
+      floor: 4,
+      side: "right",
+      parking: "yes",
+      availability: "available",
       area: 320.21,
       floorplan: "https://imgur.com/a/qO7Aix5",
     },
     {
       fraction: "B",
       beedrooms: 5,
+      floor: 5,
+      side: "left",
+      parking: "yes",
+      availability: "available",
       area: 440.11,
       floorplan: "https://imgur.com/a/qO7Aix5",
     },
     {
       fraction: "C",
       beedrooms: 2,
+      floor: 6,
+      side: "right",
+      parking: "yes",
+      availability: "available",
       area: 135.12,
       floorplan: "https://imgur.com/a/qO7Aix5",
     },
@@ -75,27 +81,51 @@ function Inquire({ onIsActive }) {
   }, [isInView, controls]);
   return (
     <>
-      <div className="block p-4 -translate-y-[33px] lg:-translate-y-0 lg:pl-4">
-        {aparmentList.map(({ fraction, beedrooms, area, floorplan }, i) => {
-          return (
-            <li
-              key={i + area}
-              className={`w-full flex items-center justify-between border-gray-300 border-[1px] border-x-0 border-b-0 py-4 ${
-                i == aparmentList.length - 1 && "border-b-[1px]"
-              }`}
-            >
-              <p>{fraction}</p>
-              <p>{beedrooms}</p>
-              <p>{area}</p>
-              <button
-                onClick={() => window.open(floorplan, "_blank")}
-                className="uppercase text-xs px-5 py-1 border-black border-[1px] rounded-2xl hover:bg-black hover:text-white duration-200 ease-linear cursor-pointer lg:-translate-x-3"
+      <div className="w-screen p-4 lg:pl-2 -translate-y-[33px]  lg:-translate-y-[29px]">
+        {aparmentList.map(
+          (
+            {
+              fraction,
+              beedrooms,
+              area,
+              floorplan,
+              floor,
+              side,
+              parking,
+              availability,
+            },
+            i
+          ) => {
+            return (
+              <div
+                key={i + area}
+                className={`w-full flex items-center justify-between border-gray-300 border-[1px] border-x-0 border-b-0 py-4 text-[14px] ${
+                  i == aparmentList.length - 1 && "border-b-[1px]"
+                }`}
               >
-                View floorplan
-              </button>
-            </li>
-          );
-        })}
+                <p className="w-[25%] lg:ml-[5px] lg:w-full">{fraction}</p>
+                <p className="w-[25%] lg:w-full">{beedrooms}</p>
+                {window.innerWidth >= 1024 && (
+                  <>
+                    <p className="w-[25%] lg:w-full">{floor}</p>
+                    <p className="w-[25%] lg:w-full uppercase">{side}</p>
+                    <p className="w-[25%] lg:w-full uppercase">{parking}</p>
+                    <p className="w-[25%] lg:w-full lg:mr-[15px] uppercase">
+                      {availability}
+                    </p>
+                  </>
+                )}
+                <p className="w-[25%] lg:w-full lg:-translate-x-4">{area}</p>
+                <button
+                  onClick={() => window.open(floorplan, "_blank")}
+                  className="w-[25%] lg:w-[42%]  uppercase text-[8px] px-5 py-1 border-black border-[1px] rounded-2xl hover:bg-black hover:text-white duration-200 ease-linear cursor-pointer lg:-translate-x-4"
+                >
+                  {window.innerWidth <= 1024 ? "View" : "View floorplan"}
+                </button>
+              </div>
+            );
+          }
+        )}
       </div>
       <section
         ref={ref}
@@ -109,7 +139,7 @@ function Inquire({ onIsActive }) {
             controls={controls}
           />
         </div>
-        <LargeBtn text="SCHEDULE" position="relative left-1/2 -ml-14" />
+        <LargeBtn text="SCHEDULE" position="relative left-[5%] lg:left-[47%]" />
 
         <div className="w-full py-8 border-white border-[1px] border-x-0 border-t-0 mb-8">
           <p className="uppercase text-[1.25em] font-light">

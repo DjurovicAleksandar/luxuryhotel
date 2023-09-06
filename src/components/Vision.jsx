@@ -36,7 +36,7 @@ function Vision({ onIsActive, scrollY }) {
           controls={controls}
         />
       </div>
-      <div className="relative w-full h-full flex items-center gap-5">
+      <div className="relative w-full h-full lg:flex items-center gap-5">
         {window.innerWidth <= 800 ? (
           <img
             className="w-full lg:w-[14rem] h-auto mb-5 lg:mb-2"
@@ -52,17 +52,7 @@ function Vision({ onIsActive, scrollY }) {
             />
           </AnimateImages>
         )}
-        {window.innerWidth > 800 && (
-          <AnimatedP>
-            <p className="text-[0.8124rem] mb-10 lg:mb-20  lg:w-[18rem] lg:text-xs">
-              FEATURING STRAIGHT LINES AND MODERN AMENITIES, OUR DEVELOPMENT
-              WILL OFFER RESIDENTS THE ULTIMATE IN STYLE AND COMFORT. OUR VISION
-              IS TO SET A NEW STANDARD FOR LUXURY LIVING ON MADEIRA ISLAND.
-            </p>
-          </AnimatedP>
-        )}
-      </div>
-      {window.innerWidth <= 800 && (
+        {/* {window.innerWidth > 800 && ( */}
         <AnimatedP>
           <p className="text-[0.8124rem] mb-10 lg:mb-20  lg:w-[18rem] lg:text-xs">
             FEATURING STRAIGHT LINES AND MODERN AMENITIES, OUR DEVELOPMENT WILL
@@ -70,7 +60,17 @@ function Vision({ onIsActive, scrollY }) {
             SET A NEW STANDARD FOR LUXURY LIVING ON MADEIRA ISLAND.
           </p>
         </AnimatedP>
-      )}
+        {/* )} */}
+      </div>
+      {/* {window.innerWidth <= 800 && (
+        <AnimatedP>
+          <p className="text-[0.8124rem] mb-10 lg:mb-20  lg:w-[18rem] lg:text-xs">
+            FEATURING STRAIGHT LINES AND MODERN AMENITIES, OUR DEVELOPMENT WILL
+            OFFER RESIDENTS THE ULTIMATE IN STYLE AND COMFORT. OUR VISION IS TO
+            SET A NEW STANDARD FOR LUXURY LIVING ON MADEIRA ISLAND.
+          </p>
+        </AnimatedP>
+      )} */}
     </section>
   );
 }

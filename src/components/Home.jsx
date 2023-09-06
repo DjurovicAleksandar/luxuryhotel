@@ -11,10 +11,13 @@ function Home({ onIsActive, scrollY }) {
   const ref = useRef(null);
   const isInView = useInView(ref);
   const controls = useAnimation();
+
   const paralaxY =
-    window.innerWidth >= 1024 && useTransform(scrollY, [0, 0.1], ["0%", "40%"]);
+    window.innerWidth >= 1024 &&
+    useTransform(scrollY, [0, 0.1], ["0%", "100%"]);
   const textY =
-    window.innerWidth >= 1024 && useTransform(scrollY, [0, 0.4], ["0%", "30%"]);
+    window.innerWidth >= 1024 &&
+    useTransform(scrollY, [0, 0.1], ["0%", "100%"]);
   const opacityY =
     window.innerWidth >= 1024 && useTransform(scrollY, [0, 0.1], [1, 0]);
 
