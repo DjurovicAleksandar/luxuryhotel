@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState, useRef } from "react";
+import { useScroll, useTransform, motion } from "framer-motion";
 import Home from "./components/Home";
 import Nav from "./components/Nav";
 import Vision from "./components/Vision";
@@ -7,31 +8,27 @@ import Island from "./components/Island";
 import Location from "./components/Location";
 import Availability from "./components/Availability";
 import Inquire from "./components/Inquire";
-import {
-  motion,
-  useTransform,
-  useScroll,
-  useMotionValueEvent,
-} from "framer-motion";
+import HorizontalScrollCarousel from "./components/helper/HorizontalScrollCarousel";
+import { useEffect } from "react";
 
 function App() {
-  function transformSection(section) {
-    const offsetTop = section?.parentElement.offsetTop;
-    const scrollSection = section?.querySelector(".scroll__section");
-    let percentage = ((window.scrollY - offsetTop) / window.innerHeight) * 100;
-    percentage = percentage < 0 ? 0 : percentage > 400 ? 400 : percentage;
-    scrollSection.style.transform = `translate3d(${-percentage}vw,0,0)`;
-  }
+  const targetRef = useRef(null);
+  const [isActive, setIsActive] = useState("home");
+
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+  });
 
   useEffect(() => {
-    if (window.innerWidth <= 800) return;
-
-    window.addEventListener("scroll", () => {
-      const stickySection = document.querySelector(".sticky");
-      transformSection(stickySection);
-    });
-
-    return window.removeEventListener("scroll", () => {});
+    window.addEventListener(
+      "keydown",
+      function (e) {
+        if (["ArrowLeft", "ArrowRight"].indexOf(e.code) > -1) {
+          e.preventDefault();
+        }
+      },
+      false
+    );
   }, []);
 
   if (window.innerWidth <= 800)
@@ -49,23 +46,30 @@ function App() {
     );
 
   return (
-    <div className="h-screen w-screen">
-      <Nav />
+    <div className="">
+      <Nav
+        scrollYProgress={scrollYProgress}
+        isActive={isActive}
+        onIsActive={setIsActive}
+      />
       <main>
-        <div className="sticky__parent">
-          <div className="sticky">
-            <div className="scroll__section">
-              <Home />
-              <Vision />
-              <Apartments />
-              <Island />
-              <Availability />
-            </div>
-          </div>
-        </div>
-        <div>
-          <Inquire />
-        </div>
+        <HorizontalScrollCarousel
+          tef={targetRef}
+          scrollYProgress={scrollYProgress}
+        >
+          <Home scrollY={scrollYProgress} onIsActive={setIsActive} />
+
+          <Vision scrollY={scrollYProgress} onIsActive={setIsActive} />
+
+          <Apartments scrollY={scrollYProgress} onIsActive={setIsActive} />
+          <Island scrollYProgress={scrollYProgress} onIsActive={setIsActive} />
+          <Location
+            scrollYProgress={scrollYProgress}
+            onIsActive={setIsActive}
+          />
+          <Availability onIsActive={setIsActive} />
+        </HorizontalScrollCarousel>
+        <Inquire onIsActive={setIsActive} />
       </main>
     </div>
   );
