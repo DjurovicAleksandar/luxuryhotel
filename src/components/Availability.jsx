@@ -115,7 +115,7 @@ function Availability({ onIsActive }) {
         </div>
       </div>
       <ul>
-        <div className="w-full flex  justify-between items-start text-[14px] py-4 gap-[5rem]">
+        <div className="w-full flex  justify-between items-start text-[10px] lg:text-[14px] py-4 lg:gap-[5rem]">
           <p className="uppercase font-light w-[25%] ">fraction</p>
           <p className="uppercase font-light w-[25%] ">bedrooms</p>
           {window.innerWidth >= 1024 && (
