@@ -27,11 +27,11 @@ function Location({ onIsActive }) {
       id="location"
       className="relative lg:w-[100vw] lg:flex items-center justify-around bg-[#f7f4ef]"
     >
-      <div className="py-6  border-black/40 border-[1px] border-x-0 border-t-0 lg:border-b-0 mb-4 relative w-full  bg-red-200">
+      <div className="py-6  border-black/40 border-[1px] border-x-0 border-t-0 lg:border-b-0 mb-4 relative w-1/2  bg-red-200">
         <Marquee
           speed={90}
           direction={window.innerWidth <= 1024 ? "left" : "down"}
-          className="lg:absolute lg:left-0 lg:bg-transparent  overflow-y-hidden h-screen "
+          className="lg:absolute lg:left-0 lg:bg-transparent overflow-y-hidden h-screen flex items-start justify-start"
         >
           <p className="text-4xl font-light uppercase lg:-rotate-90 lg:text-[5vw] h-full p-8">
             &nbsp;In heart of Bali &#x2022;{" "}
