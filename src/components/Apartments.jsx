@@ -12,17 +12,19 @@ import { scrollToPosition } from "./helper/HelpserFunctions";
 function Apartments({ onIsActive }) {
   const ref = useRef(null);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [imgAlt, setImgAlt] = useState(null);
 
-  const getImageName = (imgName) => {
-    return imgName.split("/").slice(-1).join("").replace(".jpg", "");
-  };
+  // const getImageName = (imgName) => {
+  //   return imgName.split("/").slice(-1).join("").replace(".jpg", "");
+  // };
 
-  const openFullScreen = (imageSrc) => {
-    console.log(imageSrc.split("/").slice(-1).join("").replace(".jpg", ""));
+  const openFullScreen = (imageSrc, imgAlt) => {
+    setImgAlt(imgAlt);
     setSelectedImage(imageSrc);
   };
 
   const closeFullScreen = () => {
+    setImgAlt(null);
     setSelectedImage(null);
   };
 
@@ -112,7 +114,7 @@ function Apartments({ onIsActive }) {
               className="w-full lg:w-[50rem] h-auto lg:h-[38rem] cursor-pointer"
               alt="POOL"
               src={pool}
-              onClick={() => openFullScreen(pool)}
+              onClick={() => openFullScreen(pool, "pool")}
             />
           </AnimateImages>
 
@@ -122,13 +124,13 @@ function Apartments({ onIsActive }) {
                 className="w-full lg:w-[35rem] h-auto lg:h-[18.5rem] mb-4 cursor-pointer"
                 alt="KITCHEN"
                 src={kitchen}
-                onClick={() => openFullScreen(kitchen)}
+                onClick={() => openFullScreen(kitchen, "kitchen")}
               />
               <img
                 className="w-full lg:w-[35rem] h-auto lg:h-[18.5rem] z-50 cursor-pointer"
                 alt="BATHROOM"
                 src={bathroom}
-                onClick={() => openFullScreen(bathroom)}
+                onClick={() => openFullScreen(bathroom, "bathroom")}
               />
             </AnimateImages>
           </div>
@@ -138,16 +140,16 @@ function Apartments({ onIsActive }) {
               className="w-full lg:w-[50rem] h-auto lg:h-[38rem] cursor-pointer"
               alt="BEDROOM"
               src={bedroom}
-              onClick={() => openFullScreen(bedroom)}
+              onClick={() => openFullScreen(bedroom, "bedroom")}
             />
           </AnimateImages>
 
           {selectedImage !== null && (
             <div
               className={`absolute ${
-                getImageName(selectedImage) === "pool"
+                imgAlt === "pool"
                   ? "-left-[12%]"
-                  : getImageName(selectedImage) === "bedroom"
+                  : imgAlt === "bedroom"
                   ? "-right-[12%]"
                   : "left-[10%]"
               } z-[200] w-screen h-screen flex justify-center items-center`}
