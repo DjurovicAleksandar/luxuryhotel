@@ -25,21 +25,21 @@ function Location({ onIsActive }) {
     <section
       ref={ref}
       id="location"
-      className="relative lg:w-[100vw] lg:flex items-center justify-around bg-[#f7f4ef]"
+      className="relative lg:w-[100vw] lg:flex bg-[#f7f4ef]"
     >
-      <div className="py-6  border-black/40 border-[1px] border-x-0 border-t-0 lg:border-b-0 mb-4 relative w-1/2  bg-red-200">
+      <div className="py-6 lg:pl-[100px] border-black/40 border-[1px] border-x-0 border-t-0 lg:border-b-0 mb-4 relative">
         <Marquee
           speed={90}
           direction={window.innerWidth <= 1024 ? "left" : "down"}
-          className="lg:absolute lg:left-0 lg:bg-transparent overflow-y-hidden h-screen flex items-start justify-start"
+          className="lg:absolute lg:inset-0 lg:bg-transparent lg:-left-[20rem] overflow-y-hidden"
         >
-          <p className="text-4xl font-light uppercase lg:-rotate-90 lg:text-[5vw] h-full p-8">
+          <p className="text-4xl font-light uppercase lg:-rotate-90 lg:text-[5vw]">
             &nbsp;In heart of Bali &#x2022;{" "}
           </p>
         </Marquee>
         <div className="hidden lg:block absolute top-2 bottom-0 left-[6rem] border-black/20 border-[1px] brder-b-0 border-t-0 h-full border-l-0" />
       </div>
-      <div className="p-4 text-center lg:flex flex-col items-center justify-center relative w-full bg-green-200">
+      <div className="p-4 text-center lg:flex flex-col items-center justify-center lg:w-[50rem] relative">
         <div className="">
           <h2 className="uppercase my-4 text-[.825em] text-gray-400">
             location
@@ -73,7 +73,7 @@ function Location({ onIsActive }) {
       <AnimateImages>
         <img
           src={location}
-          alt="Hotel"
+          // alt="Hotel"
           className="w-full h-auto mb-8 lg:h-screen"
         />
       </AnimateImages>
