@@ -48,12 +48,12 @@
     object-fit: cover;
     background-position: center;
   }
-  .inquire {
+  /* .inquire {
     background-image: url("/src/assets/img/bgfooter.jpg");
     background-repeat: no-repeat;
     object-fit: cover;
     background-position: center;
-  }
+  } */
 
   .content {
     width: 100vw;
