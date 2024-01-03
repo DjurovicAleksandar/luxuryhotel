@@ -5,7 +5,7 @@ import Nav from "./components/Nav";
 import Vision from "./components/Vision";
 import Apartments from "./components/Apartments";
 import Island from "./components/Island";
-import Location from "./components/Location";
+// import Location from "./components/Location";
 import Availability from "./components/Availability";
 import Inquire from "./components/Inquire";
 import HorizontalScrollCarousel from "./components/helper/HorizontalScrollCarousel";
@@ -65,10 +65,10 @@ function App() {
               scrollYProgress={scrollYProgress}
               onIsActive={setIsActive}
             />
-            <Location
+            {/* <Location
               scrollYProgress={scrollYProgress}
               onIsActive={setIsActive}
-            />
+            /> */}
             <Availability onIsActive={setIsActive} />
           </HorizontalScrollCarousel>
           <Inquire onIsActive={setIsActive} />
