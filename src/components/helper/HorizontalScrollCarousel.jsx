@@ -1,8 +1,15 @@
-import { useScroll, useTransform, motion } from "framer-motion";
-import { useEffect } from "react";
+import { useTransform, motion } from "framer-motion";
 
 function HorizontalScrollCarousel({ children, scrollYProgress, tef }) {
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-83.5%"]);
+
+  if (screen.width < 1024) {
+    return (
+      <div id="horizontal__container" className="relative w-screen">
+        {children}
+      </div>
+    );
+  }
 
   return (
     <div id="horizontal__container" ref={tef} className="relative h-[500vh]">

@@ -1,6 +1,6 @@
 import Marquee from "react-fast-marquee";
 import location from "../assets/img/location.jpg";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useAnimation, useInView } from "framer-motion";
 import AnimatedText from "./helper/AnimatedText";
 import AnimateImages from "./helper/AnimateImages";
@@ -19,7 +19,7 @@ function Location({ onIsActive }) {
     } else {
       controls.start("hidden");
     }
-  }, [isInView, controls]);
+  }, [isInView, controls, onIsActive]);
 
   return (
     <section
@@ -31,7 +31,7 @@ function Location({ onIsActive }) {
         <Marquee
           speed={90}
           direction={window.innerWidth <= 1024 ? "left" : "down"}
-          className="lg:absolute lg:inset-0 lg:bg-transparent lg:-left-[20rem] overflow-y-hidden"
+          className="lg:absolute lg:inset-0 lg:bg-transparent lg:-left-[19rem] overflow-y-hidden"
         >
           <p className="text-4xl font-light uppercase lg:-rotate-90 lg:text-[5vw]">
             &nbsp;In heart of Bali &#x2022;{" "}

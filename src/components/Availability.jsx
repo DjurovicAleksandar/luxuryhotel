@@ -1,4 +1,4 @@
-import { useAnimation, useInView, useScroll } from "framer-motion";
+import { useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
 import AnimatedText from "./helper/AnimatedText";
 import Button from "./helper/Button";
@@ -71,6 +71,36 @@ function Availability({ onIsActive }) {
       area: 110.21,
       floorplan: "https://imgur.com/a/qO7Aix5",
     },
+    {
+      fraction: "I",
+      beedrooms: 3,
+      floor: 3,
+      side: "left",
+      parking: "yes",
+      availability: "available",
+      area: 220.21,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
+    {
+      fraction: "U",
+      beedrooms: 1,
+      floor: 3,
+      side: "left",
+      parking: "yes",
+      availability: "available",
+      area: 115.22,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
+    {
+      fraction: "E",
+      beedrooms: 1,
+      floor: 3,
+      side: "right",
+      parking: "yes",
+      availability: "available",
+      area: 114.32,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
   ];
 
   useEffect(() => {
@@ -86,7 +116,7 @@ function Availability({ onIsActive }) {
     <section
       id="availability"
       ref={ref}
-      className="relative lg:content p-4 lg:pl-8 pt-28"
+      className="relative lg:content p-4 lg:pl-8 pt-28 h-fit"
     >
       <h2 className="text-[.8125em] uppercase text-gray-500 mb-4">
         Availability

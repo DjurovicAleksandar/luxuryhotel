@@ -23,9 +23,8 @@ const overlayVariants = {
 };
 
 const handleMouseEnter = (state) => state(true);
-const handleMouseLeave = (state, setCursor) => {
+const handleMouseLeave = (state) => {
   state(false);
-  // setCursor({ x: 0, y: 0 });
 };
 
 function AnimateImages({ children }) {

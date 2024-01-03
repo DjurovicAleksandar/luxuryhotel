@@ -2,17 +2,29 @@ import bedroom from "../assets/img/aparments/bedroom.jpg";
 import bathroom from "../assets/img/aparments/bathroom.jpg";
 import kitchen from "../assets/img/aparments/kitchen.jpg";
 import pool from "../assets/img/aparments/pool.jpg";
-import { useInView, useAnimation, useTransform, motion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useInView, useAnimation, motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import AnimatedText from "./helper/AnimatedText";
 import AnimateImages from "./helper/AnimateImages";
 import Button from "./helper/Button";
 import { scrollToPosition } from "./helper/HelpserFunctions";
 
-function Apartments({ onIsActive, scrollY }) {
+function Apartments({ onIsActive }) {
   const ref = useRef(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
-  // const paralaxY = useTransform(scrollY, [0, 0.5], ["0%", "1000%"]);
+  const getImageName = (imgName) => {
+    return imgName.split("/").slice(-1).join("").replace(".jpg", "");
+  };
+
+  const openFullScreen = (imageSrc) => {
+    console.log(imageSrc.split("/").slice(-1).join("").replace(".jpg", ""));
+    setSelectedImage(imageSrc);
+  };
+
+  const closeFullScreen = () => {
+    setSelectedImage(null);
+  };
 
   const isInView = useInView(ref);
 
@@ -36,12 +48,25 @@ function Apartments({ onIsActive, scrollY }) {
       controls.start("hidden");
     }
   }, [isInView, controls, onIsActive]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (selectedImage !== null) {
+        closeFullScreen();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [selectedImage]);
   return (
     <motion.section
       ref={ref}
       id="apartments"
       className="relative p-4 lg:w-[160vw] lg:flex  items-center gap-5 bg-[#f7f4ef]"
-      // style={{ x: -paralaxY }}
     >
       <div className="lg:h-[38rem] flex flex-col justify-between">
         <div className="border-[#4f414170]  border-solid border-[1px] border-x-0 border-b-0 lg:border-t-0 py-2 text-[0.8124rem] mb-10 lg:mb-0">
@@ -81,38 +106,60 @@ function Apartments({ onIsActive, scrollY }) {
       </div>
 
       {window.innerWidth >= 1024 ? (
-        <div className="flex items-center">
+        <div className="flex items-center relative">
           <AnimateImages>
             <img
-              className="w-full lg:w-[50rem] h-auto lg:h-[38rem] "
+              className="w-full lg:w-[50rem] h-auto lg:h-[38rem] cursor-pointer"
               alt="POOL"
               src={pool}
+              onClick={() => openFullScreen(pool)}
             />
           </AnimateImages>
 
           <div className="mx-4 flex flex-col">
             <AnimateImages>
-              {" "}
               <img
-                className="w-full lg:w-[35rem] h-auto lg:h-[18.5rem] mb-4"
+                className="w-full lg:w-[35rem] h-auto lg:h-[18.5rem] mb-4 cursor-pointer"
                 alt="KITCHEN"
                 src={kitchen}
+                onClick={() => openFullScreen(kitchen)}
               />
               <img
-                className="w-full lg:w-[35rem] h-auto lg:h-[18.5rem] z-50"
+                className="w-full lg:w-[35rem] h-auto lg:h-[18.5rem] z-50 cursor-pointer"
                 alt="BATHROOM"
                 src={bathroom}
+                onClick={() => openFullScreen(bathroom)}
               />
             </AnimateImages>
           </div>
 
           <AnimateImages>
             <img
-              className="w-full lg:w-[50rem] h-auto lg:h-[38rem]"
+              className="w-full lg:w-[50rem] h-auto lg:h-[38rem] cursor-pointer"
               alt="BEDROOM"
               src={bedroom}
+              onClick={() => openFullScreen(bedroom)}
             />
           </AnimateImages>
+
+          {selectedImage !== null && (
+            <div
+              className={`absolute ${
+                getImageName(selectedImage) === "pool"
+                  ? "-left-[12%]"
+                  : getImageName(selectedImage) === "bedroom"
+                  ? "-right-[12%]"
+                  : "left-[10%]"
+              } z-[200] w-screen h-screen flex justify-center items-center`}
+              onClick={closeFullScreen}
+            >
+              <img
+                src={selectedImage}
+                alt="fullscreen"
+                className="max-w-full max-h-full"
+              />
+            </div>
+          )}
         </div>
       ) : (
         <div className="">

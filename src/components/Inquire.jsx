@@ -10,36 +10,6 @@ function Inquire({ onIsActive }) {
 
   const aparmentList = [
     {
-      fraction: "I",
-      beedrooms: 3,
-      floor: 3,
-      side: "left",
-      parking: "yes",
-      availability: "available",
-      area: 220.21,
-      floorplan: "https://imgur.com/a/qO7Aix5",
-    },
-    {
-      fraction: "U",
-      beedrooms: 1,
-      floor: 3,
-      side: "left",
-      parking: "yes",
-      availability: "available",
-      area: 115.22,
-      floorplan: "https://imgur.com/a/qO7Aix5",
-    },
-    {
-      fraction: "E",
-      beedrooms: 1,
-      floor: 3,
-      side: "right",
-      parking: "yes",
-      availability: "available",
-      area: 114.32,
-      floorplan: "https://imgur.com/a/qO7Aix5",
-    },
-    {
       fraction: "A",
       beedrooms: 4,
       floor: 4,
@@ -78,10 +48,10 @@ function Inquire({ onIsActive }) {
     } else {
       controls.start("hidden");
     }
-  }, [isInView, controls]);
+  }, [isInView, controls, onIsActive]);
   return (
     <>
-      <div className="w-screen p-4 lg:pl-2 -translate-y-[33px]  lg:-translate-y-[29px]">
+      {/* <div className="w-screen p-4 lg:pl-2 -translate-y-[33px]  lg:-translate-y-[29px]">
         {aparmentList.map(
           (
             {
@@ -126,7 +96,7 @@ function Inquire({ onIsActive }) {
             );
           }
         )}
-      </div>
+      </div> */}
       <section
         ref={ref}
         id="inquire"

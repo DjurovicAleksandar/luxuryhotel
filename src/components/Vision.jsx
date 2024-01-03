@@ -5,7 +5,7 @@ import AnimatedText from "./helper/AnimatedText";
 import AnimateImages from "./helper/AnimateImages";
 import AnimatedP from "./helper/AnimatedP";
 
-function Vision({ onIsActive, scrollY }) {
+function Vision({ onIsActive }) {
   const ref = useRef(null);
   const isInView = useInView(ref);
   const controls = useAnimation();
@@ -52,7 +52,7 @@ function Vision({ onIsActive, scrollY }) {
             />
           </AnimateImages>
         )}
-        {/* {window.innerWidth > 800 && ( */}
+
         <AnimatedP>
           <p className="text-[0.8124rem] mb-10 lg:mb-20  lg:w-[18rem] lg:text-xs">
             FEATURING STRAIGHT LINES AND MODERN AMENITIES, OUR DEVELOPMENT WILL
@@ -62,15 +62,6 @@ function Vision({ onIsActive, scrollY }) {
         </AnimatedP>
         {/* )} */}
       </div>
-      {/* {window.innerWidth <= 800 && (
-        <AnimatedP>
-          <p className="text-[0.8124rem] mb-10 lg:mb-20  lg:w-[18rem] lg:text-xs">
-            FEATURING STRAIGHT LINES AND MODERN AMENITIES, OUR DEVELOPMENT WILL
-            OFFER RESIDENTS THE ULTIMATE IN STYLE AND COMFORT. OUR VISION IS TO
-            SET A NEW STANDARD FOR LUXURY LIVING ON MADEIRA ISLAND.
-          </p>
-        </AnimatedP>
-      )} */}
     </section>
   );
 }
