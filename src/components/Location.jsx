@@ -31,7 +31,7 @@ function Location({ onIsActive }) {
         <Marquee
           speed={90}
           direction={window.innerWidth <= 1024 ? "left" : "down"}
-          className="lg:absolute lg:inset-0 lg:bg-transparent  overflow-y-hidden h-screen "
+          className="lg:absolute lg:left-0 lg:bg-transparent  overflow-y-hidden h-screen "
         >
           <p className="text-4xl font-light uppercase lg:-rotate-90 lg:text-[5vw] h-full p-8">
             &nbsp;In heart of Bali &#x2022;{" "}
