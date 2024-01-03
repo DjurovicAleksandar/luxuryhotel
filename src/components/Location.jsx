@@ -31,13 +31,13 @@ function Location({ onIsActive }) {
         <Marquee
           speed={90}
           direction={window.innerWidth <= 1024 ? "left" : "down"}
-          className="lg:absolute lg:inset-0 lg:bg-transparent lg:-left-[19rem] overflow-y-hidden h-screen "
+          className="lg:absolute lg:inset-0 lg:bg-transparent  overflow-y-hidden h-screen "
         >
-          <p className="text-4xl font-light uppercase lg:-rotate-90 lg:text-[5vw] h-full p-8 bg-red-200">
+          <p className="text-4xl font-light uppercase lg:-rotate-90 lg:text-[5vw] h-full p-8">
             &nbsp;In heart of Bali &#x2022;{" "}
           </p>
         </Marquee>
-        <div className="hidden lg:block absolute top-2 bottom-0 left-[6rem] border-black/20 border-[1px] brder-b-0 border-t-0 h-full border-l-0" />
+        <div className="hidden lg:block absolute top-2 bottom-0 left-[1rem] border-black/20 border-[1px] brder-b-0 border-t-0 h-full border-l-0" />
       </div>
       <div className="p-4 text-center lg:flex flex-col items-center justify-center lg:w-[50rem] relative">
         <div className="">
@@ -73,7 +73,7 @@ function Location({ onIsActive }) {
       <AnimateImages>
         <img
           src={location}
-          // alt="Hotel"
+          alt="Hotel"
           className="w-full h-auto mb-8 lg:h-screen"
         />
       </AnimateImages>
