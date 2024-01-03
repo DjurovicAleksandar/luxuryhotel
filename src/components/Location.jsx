@@ -27,13 +27,24 @@ function Location({ onIsActive }) {
       id="location"
       className="relative lg:w-[100vw] lg:flex bg-[#f7f4ef]"
     >
-      <div className="py-6 lg:pl-[100px] border-black/40 border-[1px] border-x-0 border-t-0 lg:border-b-0 mb-4 relative">
+      {/* <div className="py-6 lg:pl-[100px] border-black/40 border-[1px] border-x-0 border-t-0 lg:border-b-0 mb-4 relative">
         <Marquee
           speed={90}
           direction={window.innerWidth <= 1024 ? "left" : "down"}
           className="lg:absolute lg:inset-0 lg:bg-transparent lg:-left-[20rem] overflow-y-hidden"
         >
           <p className="text-4xl font-light uppercase lg:-rotate-90 lg:text-[5vw]">
+            &nbsp;In heart of Bali &#x2022;{" "}
+          </p>
+        </Marquee>
+        <div className="hidden lg:block absolute top-2 bottom-0 left-[6rem] border-black/20 border-[1px] brder-b-0 border-t-0 h-full border-l-0" />
+      </div> */}
+      <div className="py-6 lg:pl-[100px] border-black/40 border-[1px] border-x-0 border-t-0 lg:border-b-0 mb-4 relative  w-full lg:w-[20rem]">
+        <Marquee
+          speed={90}
+          direction={window.innerWidth <= 1024 ? "left" : "up"}
+        >
+          <p className="text-4xl font-light uppercase lg:-rotate-90 lg:text-[5vw] p-14  lg:h-screen">
             &nbsp;In heart of Bali &#x2022;{" "}
           </p>
         </Marquee>
