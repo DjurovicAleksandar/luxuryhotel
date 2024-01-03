@@ -27,7 +27,7 @@ function Location({ onIsActive }) {
       id="location"
       className="relative lg:w-[100vw] lg:flex items-center justify-around bg-[#f7f4ef]"
     >
-      <div className="py-6  border-black/40 border-[1px] border-x-0 border-t-0 lg:border-b-0 mb-4 relative w-full lg:w-[10rem] bg-red-200">
+      <div className="py-6  border-black/40 border-[1px] border-x-0 border-t-0 lg:border-b-0 mb-4 relative w-full  bg-red-200">
         <Marquee
           speed={90}
           direction={window.innerWidth <= 1024 ? "left" : "down"}
@@ -39,7 +39,7 @@ function Location({ onIsActive }) {
         </Marquee>
         <div className="hidden lg:block absolute top-2 bottom-0 left-[6rem] border-black/20 border-[1px] brder-b-0 border-t-0 h-full border-l-0" />
       </div>
-      <div className="p-4 text-center lg:flex flex-col items-center justify-center lg:w-[50rem] relative w-full bg-green-200">
+      <div className="p-4 text-center lg:flex flex-col items-center justify-center relative w-full bg-green-200">
         <div className="">
           <h2 className="uppercase my-4 text-[.825em] text-gray-400">
             location
