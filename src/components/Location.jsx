@@ -25,7 +25,7 @@ function Location({ onIsActive }) {
     <section
       ref={ref}
       id="location"
-      className="relative lg:w-[100vw] lg:flex bg-[#f7f4ef]"
+      className="relative ] lg:flex bg-[#f7f4ef]"
     >
       <div className="py-6 lg:pl-[100px] border-black/40 border-[1px] border-x-0 border-t-0 lg:border-b-0 mb-4 relative">
         <Marquee
@@ -37,7 +37,7 @@ function Location({ onIsActive }) {
             &nbsp;In heart of Bali &#x2022;{" "}
           </p>
         </Marquee>
-        <div className="hidden lg:block absolute top-2 bottom-0 left-[1rem] border-black/20 border-[1px] brder-b-0 border-t-0 h-full border-l-0" />
+        <div className="hidden lg:block absolute top-2 bottom-0 left-[6rem] border-black/20 border-[1px] brder-b-0 border-t-0 h-full border-l-0" />
       </div>
       <div className="p-4 text-center lg:flex flex-col items-center justify-center lg:w-[50rem] relative">
         <div className="">
