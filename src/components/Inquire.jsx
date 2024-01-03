@@ -39,6 +39,96 @@ function Inquire({ onIsActive }) {
       area: 135.12,
       floorplan: "https://imgur.com/a/qO7Aix5",
     },
+    {
+      fraction: "K",
+      beedrooms: 2,
+      floor: 0,
+      side: "left",
+      parking: "yes",
+      availability: "available",
+      area: 147.01,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
+    {
+      fraction: "L",
+      beedrooms: 2,
+      floor: 0,
+      side: "left",
+      parking: "yes",
+      availability: "available",
+      area: 139.41,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
+    {
+      fraction: "M",
+      beedrooms: 2,
+      floor: 0,
+      side: "left",
+      parking: "yes",
+      availability: "available",
+      area: 147.35,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
+    {
+      fraction: "N",
+      beedrooms: 3,
+      floor: 1,
+      side: "left",
+      parking: "yes",
+      availability: "available",
+      area: 290.24,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
+    {
+      fraction: "J",
+      beedrooms: 1,
+      floor: 1,
+      side: "left",
+      parking: "yes",
+      availability: "available",
+      area: 122.51,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
+    {
+      fraction: "R",
+      beedrooms: 1,
+      floor: 1,
+      side: "left",
+      parking: "yes",
+      availability: "available",
+      area: 110.21,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
+    {
+      fraction: "I",
+      beedrooms: 3,
+      floor: 3,
+      side: "left",
+      parking: "yes",
+      availability: "available",
+      area: 220.21,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
+    {
+      fraction: "U",
+      beedrooms: 1,
+      floor: 3,
+      side: "left",
+      parking: "yes",
+      availability: "available",
+      area: 115.22,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
+    {
+      fraction: "E",
+      beedrooms: 1,
+      floor: 3,
+      side: "right",
+      parking: "yes",
+      availability: "available",
+      area: 114.32,
+      floorplan: "https://imgur.com/a/qO7Aix5",
+    },
   ];
 
   useEffect(() => {
@@ -51,7 +141,25 @@ function Inquire({ onIsActive }) {
   }, [isInView, controls, onIsActive]);
   return (
     <>
-      {/* <div className="w-screen p-4 lg:pl-2 -translate-y-[33px]  lg:-translate-y-[29px]">
+      <ul>
+        <div className="w-full flex  justify-between items-start text-[10px] lg:text-[14px] py-4 lg:gap-[5rem] p-4 lg:pl-8">
+          <p className="uppercase font-light w-[25%] ">fraction</p>
+          <p className="uppercase font-light w-[25%] ">bedrooms</p>
+          {window.innerWidth >= 1024 && (
+            <>
+              <p className="uppercase font-light w-[25%] ">floor</p>
+              <p className="uppercase font-light w-[25%] ">side</p>
+              <p className="uppercase font-light w-[25%] ">parking</p>
+            </>
+          )}
+          <p className="uppercase font-light w-[25%] ">areas(m2)</p>
+          {window.innerWidth >= 1024 && (
+            <p className="uppercase font-light w-[25%] ">availability</p>
+          )}
+          <p className="uppercase font-light w-[25%] ">floorplan</p>
+        </div>
+      </ul>
+      <div className="w-screen p-4 lg:pl-2 -translate-y-[33px]  lg:-translate-y-[29px]">
         {aparmentList.map(
           (
             {
@@ -69,7 +177,7 @@ function Inquire({ onIsActive }) {
             return (
               <div
                 key={i + area}
-                className={`w-full flex items-center justify-between border-gray-300 border-[1px] border-x-0 border-b-0 py-4 text-[14px] ${
+                className={`w-full flex items-center justify-between border-gray-300 border-[1px] border-x-0 border-b-0 py-4 text-[14px]  p-4 lg:pl-8 ${
                   i == aparmentList.length - 1 && "border-b-[1px]"
                 }`}
               >
@@ -96,7 +204,7 @@ function Inquire({ onIsActive }) {
             );
           }
         )}
-      </div> */}
+      </div>
       <section
         ref={ref}
         id="inquire"

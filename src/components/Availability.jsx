@@ -10,99 +10,6 @@ function Availability({ onIsActive }) {
   const isInView = useInView(ref);
   const controls = useAnimation();
 
-  const aparmentList = [
-    {
-      fraction: "K",
-      beedrooms: 2,
-      floor: 0,
-      side: "left",
-      parking: "yes",
-      availability: "available",
-      area: 147.01,
-      floorplan: "https://imgur.com/a/qO7Aix5",
-    },
-    {
-      fraction: "L",
-      beedrooms: 2,
-      floor: 0,
-      side: "left",
-      parking: "yes",
-      availability: "available",
-      area: 139.41,
-      floorplan: "https://imgur.com/a/qO7Aix5",
-    },
-    {
-      fraction: "M",
-      beedrooms: 2,
-      floor: 0,
-      side: "left",
-      parking: "yes",
-      availability: "available",
-      area: 147.35,
-      floorplan: "https://imgur.com/a/qO7Aix5",
-    },
-    {
-      fraction: "N",
-      beedrooms: 3,
-      floor: 1,
-      side: "left",
-      parking: "yes",
-      availability: "available",
-      area: 290.24,
-      floorplan: "https://imgur.com/a/qO7Aix5",
-    },
-    {
-      fraction: "J",
-      beedrooms: 1,
-      floor: 1,
-      side: "left",
-      parking: "yes",
-      availability: "available",
-      area: 122.51,
-      floorplan: "https://imgur.com/a/qO7Aix5",
-    },
-    {
-      fraction: "R",
-      beedrooms: 1,
-      floor: 1,
-      side: "left",
-      parking: "yes",
-      availability: "available",
-      area: 110.21,
-      floorplan: "https://imgur.com/a/qO7Aix5",
-    },
-    {
-      fraction: "I",
-      beedrooms: 3,
-      floor: 3,
-      side: "left",
-      parking: "yes",
-      availability: "available",
-      area: 220.21,
-      floorplan: "https://imgur.com/a/qO7Aix5",
-    },
-    {
-      fraction: "U",
-      beedrooms: 1,
-      floor: 3,
-      side: "left",
-      parking: "yes",
-      availability: "available",
-      area: 115.22,
-      floorplan: "https://imgur.com/a/qO7Aix5",
-    },
-    {
-      fraction: "E",
-      beedrooms: 1,
-      floor: 3,
-      side: "right",
-      parking: "yes",
-      availability: "available",
-      area: 114.32,
-      floorplan: "https://imgur.com/a/qO7Aix5",
-    },
-  ];
-
   useEffect(() => {
     if (isInView) {
       controls.start("visible");
@@ -110,7 +17,7 @@ function Availability({ onIsActive }) {
     } else {
       controls.start("hidden");
     }
-  }, [isInView, controls]);
+  }, [isInView, controls, onIsActive]);
 
   return (
     <section
@@ -144,68 +51,24 @@ function Availability({ onIsActive }) {
           <Button color="black" onMouseClick={() => {}}></Button>
         </div>
       </div>
-      <ul>
-        <div className="w-full flex  justify-between items-start text-[10px] lg:text-[14px] py-4 lg:gap-[5rem]">
-          <p className="uppercase font-light w-[25%] ">fraction</p>
-          <p className="uppercase font-light w-[25%] ">bedrooms</p>
-          {window.innerWidth >= 1024 && (
-            <>
-              <p className="uppercase font-light w-[25%] ">floor</p>
-              <p className="uppercase font-light w-[25%] ">side</p>
-              <p className="uppercase font-light w-[25%] ">parking</p>
-            </>
-          )}
-          <p className="uppercase font-light w-[25%] ">areas(m2)</p>
-          {window.innerWidth >= 1024 && (
-            <p className="uppercase font-light w-[25%] ">availability</p>
-          )}
-          <p className="uppercase font-light w-[25%] ">floorplan</p>
-        </div>
-        {aparmentList.map(
-          (
-            {
-              fraction,
-              beedrooms,
-              area,
-              floorplan,
-              floor,
-              side,
-              parking,
-              availability,
-            },
-            i
-          ) => {
-            return (
-              <div
-                key={i + area}
-                className={`w-full flex items-center justify-between border-gray-300 border-[1px] lg:text-[14px] border-x-0 border-b-0 py-4 ${
-                  i == aparmentList.length - 1 && "border-b-[1px]"
-                }`}
-              >
-                <p className="w-[25%] lg:w-full">{fraction}</p>
-                <p className="w-[25%] lg:w-full">{beedrooms}</p>
-                {window.innerWidth >= 1024 && (
-                  <>
-                    <p className="w-[25%] lg:w-full">{floor}</p>
-                    <p className="w-[25%] lg:w-full uppercase">{side}</p>
-                    <p className="w-[25%] lg:w-full uppercase">{parking}</p>
-                    <p className="w-[25%] lg:w-full uppercase">
-                      {availability}
-                    </p>
-                  </>
-                )}
-                <p className="w-[25%] lg:w-full">{area}</p>
-                <button
-                  onClick={() => window.open(floorplan, "_blank")}
-                  className="w-[25%] lg:w-[42%]  uppercase text-[8px] px-5 py-1 border-black border-[1px] rounded-2xl hover:bg-black hover:text-white duration-200 ease-linear cursor-pointer"
-                >
-                  {window.innerWidth <= 1024 ? "View" : "View floorplan"}
-                </button>
-              </div>
-            );
-          }
-        )}
-      </ul>
+      <div>
+        <p className=" prism leading-8  lg:leading-10 text-[1.2em]  pointer-events-none">
+          Welcome to our exclusive collection of meticulously designed
+          apartments. Each unit, ranging from the intimate 114.32 square meters
+          to the expansive 440.11 square meters reflects a harmonious blend of
+          sophistication and comfort. Nestled across six floors, our twelve
+          apartments stand tall, adorning both sides of our magnificent building
+          with convenient parking facilities gracing the landscape.
+          <br />
+          <br />
+          Step into a world where elegance meets modernity. Our thoughtfully
+          curated spaces promise an unforgettable stay, inviting you to savor
+          the panoramic views from the higher floors or find solace in serene
+          corners. The cozy ambiance of our smaller units offers an intimate
+          setting, while the grander ones provide sprawling sanctuaries,
+          ensuring a tailored experience for every guest.
+        </p>
+      </div>
     </section>
   );
 }
